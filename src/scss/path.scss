@@ -1,0 +1,299 @@
+.mini-rect {
+    fill: #0079c2;
+    transition: all 0.3s ease 0s;
+}
+
+.mini-path {
+    fill: #fff;
+    transition: all 0.3s ease 0s;
+}
+
+.mini-icon:hover .mini-rect {
+    fill: #fff;
+}
+
+.mini-icon:hover .mini-path {
+    fill: #0079c2;
+}
+
+.path {
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    fill: transparent;
+    flood-color: transparent;
+    /* stroke: #fff; */
+    stroke: #fff;
+    stroke-width: 2;
+    position: relative;
+}
+
+.before {
+    position: absolute;
+    background-color: #fff;
+    padding: 11px 21px;
+    border-radius: 15px;
+    display: block;
+    visibility: hidden;
+    transition: all 0.3s ease 0s;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.18em;
+    color: #003251;
+}
+
+.before._visible {
+    visibility: visible;
+}
+
+.path._biger {
+    fill: #0079c2;
+    flood-color: #0079c2;
+    stroke-width: 1;
+    opacity: 0.2 !important;
+}
+
+.path._init {
+    border: 1px solid black;
+    transition: all 0.7s linear 0s;
+}
+
+.path._remove {
+    transition: all 0.7s ease 0s;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.path._biger:hover {
+    -webkit-tap-highlight-color: unset;
+    stroke-opacity: unset;
+    filter: unset;
+}
+
+.path:hover {
+    fill: #0079c2;
+    flood-color: #0079c2;
+    z-index: 2;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    stroke-opacity: 0.5;
+    filter: url(#shadow);
+    fill-opacity: 1;
+    // opacity: 1;
+}
+
+div {
+    position: relative;
+}
+
+.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    background-color: #fff;
+    z-index: 500;
+}
+
+.svg-2 {
+    width: 100%;
+    max-width: 700px;
+    max-height: 500px;
+    margin: 0 auto;
+    display: block;
+    fill-opacity: 1;
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.path-2 {
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    fill: transparent;
+    flood-color: transparent;
+    stroke: #000;
+    stroke-width: 2;
+}
+
+.ymaps-2-1-79-image:hover {
+    width: 150px !important;
+}
+
+/* scale(4) */
+.path1._biger {
+    transform: translate(-19%, -15%) scale(4) !important;
+}
+
+.path2._biger {
+    transform: translate(35%, 31%) scale(4) !important;
+}
+
+.path3._biger {
+    transform: translate(33%, 45%) scale(4) !important;
+}
+
+.path4._biger {
+    transform: translate(-5%, -17%) scale(4) !important;
+}
+
+.path5._biger {
+    transform: translate(37%, 18%) scale(4) !important;
+}
+
+.path6._biger {
+    transform: translate(35%, 4%) scale(4) !important;
+}
+
+.path7._biger {
+    transform: translate(31%, 19%) scale(4) !important;
+}
+
+.path8._biger {
+    transform: translate(26%, 27%) scale(4) !important;
+}
+
+.path9._biger {
+    transform: translate(37%, 15%) scale(4) !important;
+}
+
+.path10._biger {
+    transform: translate(-7%, -15%) scale(4) !important;
+}
+
+.path11._biger {
+    transform: translate(-12%, -19%) scale(4) !important;
+}
+
+.path12._biger {
+    transform: translate(-26%, -22%) scale(4) !important;
+}
+
+.path13._biger {
+    transform: translate(13%, -10%) scale(4) !important;
+}
+
+.path14._biger {
+    transform: translate(20%, -3%) scale(4) !important;
+}
+
+.path15._biger {
+    transform: translate(29%, 6%) scale(4) !important;
+}
+
+.path16._biger {
+    transform: translate(30%, 7%) scale(4) !important;
+}
+
+.path17._biger {
+    transform: translate(25%, 3%) scale(4) !important;
+}
+
+.path18._biger {
+    transform: translate(13%, -1%) scale(4) !important;
+}
+
+.path19._biger {
+    /* transform: translate(26%, 36%)   scale(4)!important; */
+    transform: translate(26%, 36%) scale(6) !important;
+}
+
+.path20._biger {
+    transform: translate(32%, 29%) scale(4) !important;
+}
+
+.path21._biger {
+    transform: translate(20%, 12%) scale(4) !important;
+}
+
+.path22._biger {
+    transform: translate(27%, 15%) scale(4) !important;
+}
+
+.path23._biger {
+    transform: translate(13%, 5%) scale(4) !important;
+}
+
+.path24._biger {
+    transform: translate(16%, -23%) scale(4) !important;
+}
+
+.path25._biger {
+    transform: translate(26%, -14%) scale(4) !important;
+}
+
+.path26._biger {
+    transform: translate(43%, -5%) scale(4) !important;
+}
+
+.path27._biger {
+    transform: translate(16%, 18%) scale(4) !important;
+}
+
+.path28._biger {
+    transform: translate(33%, -7%) scale(4) !important;
+}
+
+.path29._biger {
+    transform: translate(41%, 6%) scale(4) !important;
+}
+
+.path30._biger {
+    transform: translate(-26%, -10%) scale(4) !important;
+}
+
+.path31._biger {
+    transform: translate(6%, 6%) scale(4) !important;
+}
+
+.path32._biger {
+    transform: translate(-16%, -20%) scale(4) !important;
+}
+
+.path33._biger {
+    transform: translate(-16%, -4%) scale(4) !important;
+}
+
+.path34._biger {
+    transform: translate(4%, -6%) scale(4) !important;
+}
+
+.path35._biger {
+    transform: translate(-34%, -23%) scale(4) !important;
+}
+
+.path36._biger {
+    transform: translate(-21%, 1%) scale(4) !important;
+}
+
+.path37._biger {
+    transform: translate(5%, -17%) scale(4) !important;
+}
+
+.path38._biger {
+    transform: translate(-12%, -13%) scale(4) !important;
+}
+
+.path39._biger {
+    transform: translate(-14%, -14%) scale(4) !important;
+}
+
+.path40._biger {
+    transform: translate(8%, -24%) scale(4) !important;
+}
+
+.path41._biger {
+    transform: translate(-20%, -28%) scale(4) !important;
+}
+
+.path42._biger {
+    transform: translate(36%, 33%) scale(4) !important;
+}
+
+.path43._biger {
+    transform: translate(22%, 24%) scale(4) !important;
+}
+

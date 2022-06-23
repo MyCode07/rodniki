@@ -1,0 +1,26 @@
+// animated line under links with ::before
+._link-underline {
+    width: fit-content;
+    position: relative;
+    &:before {
+        position: absolute;
+        content: "";
+        width: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        height: 2px;
+        background-color: #fff;
+        bottom: -3px;
+        transition: all 0.3s ease 0s;
+    }
+    @media (any-hover: hover) {
+        &:hover {
+            a {
+                // color: #005cff;
+            }
+            &:before {
+                width: 100%;
+            }
+        }
+    }
+}
