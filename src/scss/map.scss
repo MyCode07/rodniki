@@ -113,10 +113,10 @@
 
     &__regions {
         position: absolute;
-        left: 100%;
+        right: -100%;
         visibility: hidden;
         opacity: 0;
-        transition: all 1s ease 0s;
+        transition: all 1.2s ease-in-out 0s;
 
         .__select {
             display: none;
@@ -128,7 +128,7 @@
 
         &._active {
             position: relative;
-            left: 0;
+            right: 0;
             visibility: visible;
             opacity: 1;
         }
@@ -225,14 +225,14 @@
         @include adaptive-value("padding-top", 133, 38, 1);
 
         position: absolute;
-        left: 100%;
+        right: -100%;
         visibility: hidden;
         opacity: 0;
-        transition: all 1s ease 0s;
+        transition: all 1.2s ease-in-out 0s;
 
         &._active {
             position: relative;
-            left: 0;
+            right: 0;
             visibility: visible;
             opacity: 1;
         }
@@ -317,8 +317,10 @@
             justify-content: flex-start;
             margin-top: 25px;
 
+            display: none;
+
             @media (max-width: 1200px) {
-                display: none;
+                display: none!important;
             }
 
             button {
@@ -522,17 +524,6 @@
     filter: grayscale(1);
 }
 
-#map-test {
-    position: absolute;
-    left: -88px;
-    top: 204px;
-    width: calc(100% + 88px);
-    height: 100%;
-    max-height: 650px;
-    visibility: hidden;
-    opacity: 0;
-}
-
 #map-test > ymaps {
 }
 
@@ -562,6 +553,7 @@
 .map__box {
     @media (max-width: 1200px) {
         flex-direction: column-reverse;
+        margin-bottom: 25px;
     }
 }
 
@@ -582,7 +574,7 @@
     max-width: 1050px;
     max-height: 650px;
 
-    @include adaptive-value("max-height", 650, 314, 1);
+    // @include adaptive-value("max-height", 650, 314, 1);
 
     @include adaptive-value("margin-top", 204, -300, 1);
 
@@ -592,7 +584,28 @@
     @media (max-width: 1200px) {
         margin-top: 0 !important;
         max-width: none;
-        max-height: none;
+        // max-height: none;
+    }
+}
+
+#map-test {
+    position: absolute;
+    left: -88px;
+    top: 204px;
+    width: calc(100% + 88px);
+    height: 100%;
+    max-height: 650px;
+    visibility: hidden;
+    opacity: 0;
+
+    @include adaptive-value("top", 204, -300, 1);
+
+    @media (max-width: 1700px) {
+        left: 0;
+        width: 100%;
+    }
+    @media (max-width: 1200px) {
+        top: 0 !important;
     }
 }
 
@@ -600,10 +613,10 @@
     background-color: rgba(13, 24, 87, 0);
     fill-opacity: 1;
     opacity: 1;
-    @include adaptive-value("height", 650, 314, 1);
-    @include adaptive-value("width", 1050, 0, 1);
+    // @include adaptive-value("height", 650, 314, 1);
+    // @include adaptive-value("width", 1050, 0, 1);
     @media (max-width: 1200px) {
-        width: 100%!important;
+        width: 100% !important;
     }
 }
 
@@ -788,3 +801,18 @@
 @import "path-992";
 @import "path-600";
 @import "path-400";
+
+.map {
+    @include adaptive-value("min-height", 1200, 314, 1);
+}
+
+.svg__parent {
+    z-index: 2;
+    height: 100%;
+}
+
+#map-test {
+    visibility: visible;
+    opacity: 1;
+    height: 100%;
+}

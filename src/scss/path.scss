@@ -17,7 +17,7 @@
 }
 
 .path {
-    transition: all 0.3s ease 0s;
+    transition: all 0.3s ease-in-out 0s;
     cursor: pointer;
     fill: transparent;
     flood-color: transparent;
@@ -25,6 +25,10 @@
     stroke: #fff;
     stroke-width: 2;
     position: relative;
+}
+
+.path._hovered {
+    fill: #0079c2;
 }
 
 .before {
@@ -173,11 +177,13 @@ div {
 }
 
 .path13._biger {
-    transform: translate(13%, -10%) scale(4) !important;
+    // transform: translate(13%, -10%) scale(4) !important;
+    transform: translate(11%, -29%) scale(4) !important;
 }
 
 .path14._biger {
-    transform: translate(20%, -3%) scale(4) !important;
+    // transform: translate(20%, -3%) scale(4) !important;
+    transform: translate(18%, -15%) scale(4) !important;
 }
 
 .path15._biger {
@@ -193,12 +199,13 @@ div {
 }
 
 .path18._biger {
-    transform: translate(13%, -1%) scale(4) !important;
+    // transform: translate(13%, -1%) scale(4) !important;
+    transform: translate(8%, -11%) scale(4) !important;
 }
 
 .path19._biger {
-    /* transform: translate(26%, 36%)   scale(4)!important; */
-    transform: translate(26%, 36%) scale(6) !important;
+    // transform: translate(26%, 36%) scale(6) !important;
+    transform: translate(26%, 29%) scale(4) !important;
 }
 
 .path20._biger {
@@ -210,15 +217,18 @@ div {
 }
 
 .path22._biger {
-    transform: translate(27%, 15%) scale(4) !important;
+    // transform: translate(27%, 15%) scale(4) !important;
+    transform: translate(24%, 9%) scale(4) !important;
 }
 
 .path23._biger {
-    transform: translate(13%, 5%) scale(4) !important;
+    // transform: translate(13%, 5%) scale(4) !important;
+    transform: translate(10%, -2%) scale(4) !important;
 }
 
 .path24._biger {
-    transform: translate(16%, -23%) scale(4) !important;
+    // transform: translate(16%, -23%) scale(4) !important;
+    transform: translate(28%, -31%) scale(4) !important;
 }
 
 .path25._biger {
@@ -296,4 +306,3 @@ div {
 .path43._biger {
     transform: translate(22%, 24%) scale(4) !important;
 }
-

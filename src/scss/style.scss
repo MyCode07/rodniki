@@ -18,6 +18,10 @@ body {
     margin: 0 auto;
     @media (max-width: 1592px) {
         max-width: none;
+        padding: 0 40px;
+    }
+
+    @media (max-width: 768px) {
         padding: 0 22px;
     }
 }
@@ -332,6 +336,11 @@ body {
         background-color: rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(20px);
         max-width: 790px;
+        width: 100%;
+
+        @media (max-width: 790px) {
+            max-width: none;
+        }
 
         mark {
             background-color: unset;
@@ -377,6 +386,12 @@ body {
                 margin-right: 0;
                 margin-bottom: 22px;
                 flex: unset;
+                max-width: 790px;
+                width: 100%;
+            }
+
+            @media (max-width: 790px) {
+                max-width: none;
             }
 
             mark {
@@ -595,8 +610,8 @@ body {
 
             margin-left: 25px;
 
-            @media (max-width: 1200px) {
-                max-width: none!important;
+            @media (max-width: 1350px) {
+                max-width: none !important;
                 margin-left: 0;
                 margin-top: 25px;
             }
@@ -634,14 +649,11 @@ body {
         flex-grow: 0;
         flex-shrink: 0;
 
-        @media (max-width: 1200px) {
-            flex: 0 0 379px;
+        @media (max-width: 1350px) {
+            flex: 1 1 50%;
         }
 
-        @media (max-width: 992px) {
-            flex: 0 0 309px;
-        }
-
+      
         @media (max-width: 768px) {
             flex: 0 0 100%;
         }
