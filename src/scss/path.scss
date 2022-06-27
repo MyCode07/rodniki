@@ -1,131 +1,4 @@
-.mini-rect {
-    fill: #0079c2;
-    transition: all 0.3s ease 0s;
-}
 
-.mini-path {
-    fill: #fff;
-    transition: all 0.3s ease 0s;
-}
-
-.mini-icon:hover .mini-rect {
-    fill: #fff;
-}
-
-.mini-icon:hover .mini-path {
-    fill: #0079c2;
-}
-
-.path {
-    transition: all 0.3s ease-in-out 0s;
-    cursor: pointer;
-    fill: transparent;
-    flood-color: transparent;
-    /* stroke: #fff; */
-    stroke: #fff;
-    stroke-width: 2;
-    position: relative;
-}
-
-.path._hovered {
-    fill: #0079c2;
-}
-
-.before {
-    position: absolute;
-    background-color: #fff;
-    padding: 11px 21px;
-    border-radius: 15px;
-    display: block;
-    visibility: hidden;
-    transition: all 0.3s ease 0s;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 1.18em;
-    color: #003251;
-}
-
-.before._visible {
-    visibility: visible;
-}
-
-.path._biger {
-    fill: #0079c2;
-    flood-color: #0079c2;
-    stroke-width: 1;
-    opacity: 0.2 !important;
-}
-
-.path._init {
-    border: 1px solid black;
-    transition: all 0.7s linear 0s;
-}
-
-.path._remove {
-    transition: all 0.7s ease 0s;
-    visibility: hidden;
-    opacity: 0;
-    transform: scale(0);
-}
-
-.path._biger:hover {
-    -webkit-tap-highlight-color: unset;
-    stroke-opacity: unset;
-    filter: unset;
-}
-
-.path:hover {
-    fill: #0079c2;
-    flood-color: #0079c2;
-    z-index: 2;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    stroke-opacity: 0.5;
-    filter: url(#shadow);
-    fill-opacity: 1;
-    // opacity: 1;
-}
-
-div {
-    position: relative;
-}
-
-.center {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 5px;
-    height: 5px;
-    background-color: #fff;
-    z-index: 500;
-}
-
-.svg-2 {
-    width: 100%;
-    max-width: 700px;
-    max-height: 500px;
-    margin: 0 auto;
-    display: block;
-    fill-opacity: 1;
-    opacity: 1;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-.path-2 {
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    fill: transparent;
-    flood-color: transparent;
-    stroke: #000;
-    stroke-width: 2;
-}
-
-.ymaps-2-1-79-image:hover {
-    width: 150px !important;
-}
 
 /* scale(4) */
 .path1._biger {
@@ -177,13 +50,11 @@ div {
 }
 
 .path13._biger {
-    // transform: translate(13%, -10%) scale(4) !important;
-    transform: translate(11%, -29%) scale(4) !important;
+    transform:translate(17%, -14%) scale(4)  !important;
 }
 
 .path14._biger {
-    // transform: translate(20%, -3%) scale(4) !important;
-    transform: translate(18%, -15%) scale(4) !important;
+    transform: translate(18%, -15%) scale(4.2) !important;
 }
 
 .path15._biger {
@@ -199,12 +70,10 @@ div {
 }
 
 .path18._biger {
-    // transform: translate(13%, -1%) scale(4) !important;
     transform: translate(8%, -11%) scale(4) !important;
 }
 
 .path19._biger {
-    // transform: translate(26%, 36%) scale(6) !important;
     transform: translate(26%, 29%) scale(4) !important;
 }
 
@@ -217,18 +86,15 @@ div {
 }
 
 .path22._biger {
-    // transform: translate(27%, 15%) scale(4) !important;
     transform: translate(24%, 9%) scale(4) !important;
 }
 
 .path23._biger {
-    // transform: translate(13%, 5%) scale(4) !important;
-    transform: translate(10%, -2%) scale(4) !important;
+    transform: translate(9%, -2%) scale(4) !important;
 }
 
 .path24._biger {
-    // transform: translate(16%, -23%) scale(4) !important;
-    transform: translate(28%, -31%) scale(4) !important;
+    transform: translate(29.5%, -27.5%) scale(4.3) !important;
 }
 
 .path25._biger {

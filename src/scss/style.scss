@@ -7,6 +7,14 @@
     font-family: "proximanova";
 }
 
+img{
+    display: inline-block;
+}
+
+.header{
+    z-index: 1;
+}
+
 body {
     &._noscroll {
         overflow: hidden;
@@ -142,9 +150,9 @@ body {
         // .header__menu-close
 
         &-close {
-            width: 44px;
-            height: 44px;
-            flex: 0 0 44px;
+            width: 40px;
+            height: 40px;
+            flex: 0 0 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -190,11 +198,12 @@ body {
             @media (max-width: 992px) {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: flex-end;
                 width: 100%;
-                padding: 16px 12px 13px 34px;
+                padding: 16px 20px 13px 34px;
                 margin-right: 0 !important;
                 transition: all 0.3s ease 0s;
+                position: relative;
 
                 &:not(:last-child) {
                     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -205,6 +214,7 @@ body {
 
                     a {
                         color: #0079c2;
+                        background-color: #fff;
                     }
 
                     svg {
@@ -232,6 +242,7 @@ body {
 
                 @media (max-width: 992px) {
                     display: flex;
+                    z-index: 1;
                 }
             }
 
@@ -253,11 +264,23 @@ body {
 
             @media (max-width: 992px) {
                 font-size: 16px;
+
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                left: 0;
+                padding-left: 34px;
+                top: 0;
+                vertical-align: middle;
+                display: flex;
+                align-items: center;
             }
         }
 
+        // .header__menu-gaz
+
         &-gaz {
-            margin-left: 42px;
+            margin: 0 auto;
             max-width: 113px;
             display: none;
             @media (max-width: 992px) {
@@ -653,7 +676,6 @@ body {
             flex: 1 1 50%;
         }
 
-      
         @media (max-width: 768px) {
             flex: 0 0 100%;
         }
