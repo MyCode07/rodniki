@@ -5,6 +5,10 @@
     @include adaptive-value("padding-bottom", 144, 77, 1);
     @include adaptive-value("margin-bottom", 116, 52, 1);
 
+    @media (max-width: 992px) {
+        z-index: 0;
+    }
+
     &:before {
         position: absolute;
         content: "";
@@ -28,6 +32,9 @@
     // .map__body
 
     &__body {
+        @media (max-width: 1200px) {
+            overflow: hidden;
+        }
     }
 
     // .map__top
@@ -41,9 +48,6 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        @media (max-width: 1200px) {
-            overflow: hidden;
-        }
     }
 
     // .map__maps
@@ -116,7 +120,7 @@
         right: -100%;
         visibility: hidden;
         opacity: 0;
-        transition: all 1.2s ease-in-out 0s;
+        transition: all 1.2s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
 
         .__select {
             display: none;
@@ -186,6 +190,7 @@
             max-width: 505px;
 
             button {
+                z-index: 3;
                 display: block;
                 width: 153px;
                 font-style: normal;
@@ -219,7 +224,7 @@
         right: -100%;
         visibility: hidden;
         opacity: 0;
-        transition: all 1.2s ease-in-out 0s;
+        transition: all 1.2s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
 
         &._active {
             position: relative;
@@ -266,7 +271,9 @@
 
         &-body {
             max-width: 522px;
-            width: 100%;
+            // width: 100%;
+            @include adaptive-value("width", 522, 0, 1);
+
             position: relative;
             overflow: hidden;
 
@@ -290,6 +297,7 @@
             opacity: 0;
             top: 0;
             transition: all 0.7s ease 0s;
+            width: 100%;
 
             &._visible {
                 position: relative;
@@ -302,7 +310,6 @@
                 left: -100%;
                 visibility: hidden;
                 opacity: 0;
-                position: absolute;
             }
         }
 
@@ -350,6 +357,18 @@
                 align-items: center;
                 justify-content: flex-start;
                 margin: 0 26px;
+
+                span {
+                    content: "";
+                    width: 15px;
+                    height: 2px;
+                    background-color: #fff;
+                    bottom: 0;
+                    left: 5px;
+                    transition: all 0.3s ease 0s;
+                    position: absolute;
+                }
+
                 input {
                     display: block;
                     width: 25px;
@@ -359,6 +378,18 @@
                     line-height: 1.18em;
                     color: #ffffff;
                     text-align: center;
+                    cursor: pointer;
+                    transition: all 0.3s ease 0s;
+
+                    @media (any-hover: hover) {
+                        &:hover {
+                            color: #0079c2;
+                        }
+                    }
+
+                    &._active {
+                        text-decoration: underline;
+                    }
                 }
             }
 
@@ -385,7 +416,7 @@
         }
 
         .rodniki__item {
-            margin-top: 30px;
+            @include adaptive-value("margin-top", 30, 18, 1);
         }
 
         // .map__next-link
@@ -400,11 +431,33 @@
             text-align: center;
             color: #ffffff;
             width: 100%;
-            max-width: 270px;
-            padding: 10px 0;
+            max-width: 410px;
+            @include adaptive-value("padding-top", 16, 11, 1);
+            @include adaptive-value("padding-bottom", 16, 11, 1);
             margin: 0 auto;
             display: block;
+            @media (max-width: 540px) {
+                max-width: none;
+            }
         }
+    }
+}
+
+.map__norodnik {
+    @include adaptive-value("padding-top", 350, 40, 1);
+    @media (max-width: 1200px) {
+        padding-top: 40px !important;
+        margin-bottom: 40px;
+    }
+    font-style: normal;
+    font-weight: 600;
+    @include adaptive-value("font-size", 36, 28, 1);
+    line-height: 1.22em;
+    color: #ffffff;
+    display: none;
+    transition: all 1.2s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
+    &._active {
+        display: block;
     }
 }
 
@@ -418,9 +471,15 @@
     text-align: center;
     color: #ffffff;
     width: 100%;
-    max-width: 270px;
-    padding: 10px 0;
+    max-width: 410px;
+    @include adaptive-value("padding-top", 16, 11, 1);
+    @include adaptive-value("padding-bottom", 16, 11, 1);
+
     margin: 0 auto;
+
+    @media (max-width: 540px) {
+        max-width: none;
+    }
 
     display: none;
 
@@ -441,7 +500,8 @@
         @include adaptive-value("padding-left", 27, 20, 1);
         @include adaptive-value("padding-right", 27, 20, 1);
         @include adaptive-value("margin-bottom", 15, 18, 1);
-
+        z-index: 3;
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -550,7 +610,7 @@
 .map__box {
     @media (max-width: 1200px) {
         flex-direction: column-reverse;
-        margin-bottom: 25px;
+        margin-bottom: 18px;
     }
 }
 
@@ -641,9 +701,49 @@
 .mini-icon {
     z-index: 650;
     position: absolute;
-    @include adaptive-value('width', 50, 25, 1);
+    @include adaptive-value("width", 50, 25, 1);
     cursor: pointer;
     transition: all 0.3s ease 0s;
+
+    @media (any-hover: hover) {
+        &:hover {
+            z-index: 651;
+        }
+    }
+
+    &._hovered {
+        z-index: 651;
+        .mini-rect {
+            fill: #fff;
+        }
+
+        .mini-path {
+            fill: #0079c2;
+        }
+    }
+
+    &-r {
+        z-index: 650;
+        pointer-events: none;
+        position: absolute;
+        // width: 10px;
+        @include adaptive-value("width", 15, 10, 1);
+
+        transition: all 0.3s ease 0s;
+
+        &._hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .mini-rect {
+            fill: #fff;
+        }
+
+        .mini-path {
+            fill: #0079c2;
+        }
+    }
 }
 
 .select {
@@ -664,11 +764,15 @@
     max-width: 410px;
     width: 100%;
 
+    @media (max-width: 768px) {
+        margin-bottom: 18px;
+    }
+
     @media (max-width: 540px) {
         max-width: none;
     }
 
-    z-index: 1;
+    z-index: 4;
 
     &[data-state="active"] {
         .select__title {
@@ -687,11 +791,8 @@
             &::before {
                 opacity: 1;
             }
-
-            // &::after {
-            //     opacity: 1;
-            // }
         }
+        // top убираю оставляю цвет фона здесь или делаю как ран\ше
         .select__content {
             background-color: #fff;
         }
@@ -700,6 +801,13 @@
         .sselect__content-body {
             max-height: 400px;
             overflow-y: auto;
+
+            @media (max-width: 768px) {
+                max-height: 330px;
+            }
+            @media (max-width: 500px) {
+                max-height: 295px;
+            }
         }
     }
 
@@ -745,18 +853,20 @@
         }
     }
 
+    // топ 60 было стало 0
     &__content {
         position: absolute;
-        top: 60px;
+        top: 74px;
         left: 0;
         padding: 15px 15px 15px 0;
         border-radius: 15px;
-
         display: flex;
         flex-direction: column;
         width: 100%;
         transition: all 0.3s ease-out;
         z-index: 1;
+
+        overflow: hidden;
 
         &-body {
             border-radius: 15px;
@@ -783,14 +893,12 @@
 
     &__label {
         pointer-events: none;
-        background-color: #fff;
 
         display: flex;
         align-items: center;
         width: 100%;
         @include adaptive-value("height", 53, 43, 1);
-        max-height: 0;
-        padding: 0 16px;
+        padding: 0px 16px;
 
         &[for="singleSelect0-rgn"],
         &[for="singleSelect0-rdk"] {
@@ -801,7 +909,7 @@
             border-radius: 0 0 15px 15px;
         }
 
-        transition: all 0.2s ease-out;
+        transition: all 0.3s ease-out;
 
         cursor: pointer;
 
@@ -813,21 +921,15 @@
 
         &::before {
             content: attr(data-value);
-
-            transition: all 0.2s ease-out;
-
-            opacity: 0;
+            opacity: 1;
         }
-        // &::after {
-        //     color: #333333;
-        //     margin-left: 10px;
-        //     opacity: 0;
-        // }
     }
 }
 
 .sselect__content-body {
     border-radius: 15px;
+    max-height: 0;
+    transition: all 0.3s ease 0s;
     &::-webkit-scrollbar {
         width: 2px;
     }
@@ -861,7 +963,7 @@
 }
 
 .path {
-    transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
     cursor: pointer;
     fill: transparent;
     flood-color: transparent;
@@ -873,21 +975,44 @@
 
 .path._hovered {
     fill: #0079c2;
+    flood-color: #0079c2;
+    z-index: 2;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+    // stroke-opacity: 0.5;
+    filter: url(#shadow);
+    fill-opacity: 1;
+    // opacity: 1;
 }
 
-.before {
+.before,
+.before-r {
     position: absolute;
     background-color: #fff;
-    padding: 11px 21px;
-    border-radius: 15px;
+    @include adaptive-value("padding-top", 11, 4, 1);
+    @include adaptive-value("padding-bottom", 11, 4, 1);
+    @include adaptive-value("padding-left", 21, 9, 1);
+    @include adaptive-value("padding-right", 21, 9, 1);
+    @include adaptive-value("border-radius", 15, 5, 1);
+    @include adaptive-value("font-size", 18, 10, 1);
+
     display: block;
     visibility: hidden;
     transition: all 0.3s ease 0s;
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
     line-height: 1.18em;
     color: #003251;
+    white-space: nowrap;
+    z-index: 5;
+
+    &._zindex {
+        z-index: 0;
+    }
+}
+
+.before-r {
+    visibility: visible;
+    z-index: 651;
 }
 
 .before._visible {
@@ -899,15 +1024,17 @@
     flood-color: #0079c2;
     stroke-width: 1;
     opacity: 0.2 !important;
+    filter: url(#filter0_i_362_1838);
+    fill-opacity: 1;
 }
 
 .path._init {
     border: 1px solid black;
-    transition: all 0.7s linear 0s;
+    transition: all 0.7s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
 }
 
 .path._remove {
-    transition: all 1s ease-in-out 0s;
+    transition: all 1s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
     visibility: hidden;
     opacity: 0;
     transform: scale(0);
@@ -915,17 +1042,18 @@
 
 .path._biger:hover {
     -webkit-tap-highlight-color: unset;
-    stroke-opacity: unset;
-    filter: unset;
+    stroke-opacity: 1;
+    filter: url(#filter0_i_362_1838);
 }
 
 .path:hover {
     fill: #0079c2;
-    flood-color: #0079c2;
     z-index: 2;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    stroke-opacity: 0.5;
-    filter: url(#shadow);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.15);
+
+    filter: url(#filter0_i_362_1838) url(#shadow);
+
+    // stroke-opacity: 0.5;
     fill-opacity: 1;
     // opacity: 1;
 }
@@ -943,10 +1071,26 @@ div {
     height: 5px;
     background-color: #fff;
     z-index: 500;
+    visibility: hidden;
 }
 
 .svg {
-    @include adaptive-value("max-height", 650, 320, 1);
+    max-height: 650px;
+    @media (max-width: 1200px) {
+        height: 550px;
+    }
+
+    @media (max-width: 768px) {
+        height: 500px;
+    }
+
+    @media (max-width: 640px) {
+        height: 400px;
+    }
+
+    @media (max-width: 475px) {
+        height: 320px;
+    }
 }
 
 .path-2 {
@@ -968,13 +1112,15 @@ div {
 
 .svg__parent {
     z-index: 2;
-    height: 100%;
-    border: 1px solid black;
-    overflow: hidden;
+    // height: 100%;
+    // height: 600px;
+    // border: 1px solid black;
+    // overflow: hidden;
 }
 
 #map-test {
     visibility: visible;
+    visibility: hidden;
     opacity: 1;
     height: 100%;
 
@@ -989,10 +1135,34 @@ div {
     }
 }
 
+.path._biger {
+    opacity: 1 !important;
+}
+
+.svg__parent a {
+    position: absolute;
+    display: block;
+}
+
+@media (max-width: 1200px) {
+    .svg__parent a {
+        // pointer-events: none;
+    }
+    .rodniki__item {
+        pointer-events: none;
+    }
+}
+
+.path._transition {
+    transition: all 1s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
+}
+
 @import "path";
 @import "path-1700";
 @import "path-1290";
 @import "path-1200";
 @import "path-992";
+@import "path-768";
 @import "path-640";
 @import "path-475";
+@import "path-400";
