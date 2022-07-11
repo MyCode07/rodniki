@@ -38,6 +38,7 @@
     &__body {
         @media (max-width: 1200px) {
             overflow: hidden;
+            padding-bottom: 85px;
         }
     }
 
@@ -1133,6 +1134,7 @@ div {
 
 #map-test {
     visibility: visible;
+    visibility: hidden;
     opacity: 1;
     height: 100%;
 
