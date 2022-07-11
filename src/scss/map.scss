@@ -2,8 +2,12 @@
     position: relative;
     background-size: cover;
     background-repeat: no-repeat;
-    @include adaptive-value("padding-bottom", 144, 77, 1);
+    // @include adaptive-value("min-height", 925, 314, 1);
+    // @include adaptive-value("padding-bottom", 144, 77, 1);
+    padding-bottom: 60;
     @include adaptive-value("margin-bottom", 116, 52, 1);
+    @include adaptive-value("min-height", 865, 314, 1);
+
 
     @media (max-width: 992px) {
         z-index: 0;
@@ -120,7 +124,7 @@
         right: -100%;
         visibility: hidden;
         opacity: 0;
-        transition: all 1.2s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
+        transition: all 1.2s ease 0s;
 
         .__select {
             display: none;
@@ -137,7 +141,7 @@
             opacity: 1;
         }
 
-        @include adaptive-value("padding-top", 133, 38, 1);
+        padding-top: 38px;
 
         // .map__regions-title
 
@@ -180,14 +184,31 @@
         &-select {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            max-width: 505px;
+
+            @media (max-width: 1440px) {
+                grid-template-columns: repeat(2, 1fr);
+                max-height: 50vh;
+                overflow-y: auto;
+                overflow-x: hidden;
+
+                &::-webkit-scrollbar {
+                    width: 2px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background-color: rgb(199, 199, 199);
+                    border-radius: 100px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    box-shadow: inset 2px 2px 5px 0 #0079c2;
+                }
+            }
+
             @media (max-width: 1200px) {
                 display: none;
             }
-
-            // display: flex;
-            // flex-wrap: wrap;
-
-            max-width: 505px;
 
             button {
                 z-index: 3;
@@ -218,13 +239,16 @@
 
     &__rodniki {
         counter-reset: rosnik-count;
-        @include adaptive-value("padding-top", 133, 38, 1);
-
+        padding-top: 38px;
         position: absolute;
         right: -100%;
         visibility: hidden;
         opacity: 0;
-        transition: all 1.2s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
+        transition: all 1.2s ease 0s;
+
+        @media (min-width:1201px){
+            z-index: 3;
+        }
 
         &._active {
             position: relative;
@@ -455,7 +479,7 @@
     line-height: 1.22em;
     color: #ffffff;
     display: none;
-    transition: all 1.2s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
+    transition: all 1.2s ease 0s;
     &._active {
         display: block;
     }
@@ -631,7 +655,7 @@
     max-width: 1050px;
     max-height: 650px;
 
-    @include adaptive-value("margin-top", 204, -300, 1);
+    @include adaptive-value("margin-top", 60, -120, 1);
 
     @media (max-width: 1700px) {
         margin-left: 0;
@@ -664,10 +688,12 @@
     }
 }
 
-.svg {
+.svg,
+.svg2 {
     background-color: rgba(13, 24, 87, 0);
     fill-opacity: 1;
     opacity: 1;
+    max-height: 650px;
     @media (max-width: 1700px) {
         width: 90%;
     }
@@ -677,11 +703,21 @@
     @media (max-width: 1200px) {
         width: 100%;
     }
-}
 
-.map__regions-select {
-    @media (max-width: 1440px) {
-        grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 1200px) {
+        height: 550px;
+    }
+
+    @media (max-width: 768px) {
+        height: 500px;
+    }
+
+    @media (max-width: 640px) {
+        height: 400px;
+    }
+
+    @media (max-width: 475px) {
+        height: 320px;
     }
 }
 
@@ -963,7 +999,7 @@
 }
 
 .path {
-    transition: all 0.3s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
+    transition: all 0.3s ease 0s;
     cursor: pointer;
     fill: transparent;
     flood-color: transparent;
@@ -1030,11 +1066,11 @@
 
 .path._init {
     border: 1px solid black;
-    transition: all 0.7s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
+    transition: all 0.7s ease 0s;
 }
 
 .path._remove {
-    transition: all 1s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
+    transition: all 1s ease 0s;
     visibility: hidden;
     opacity: 0;
     transform: scale(0);
@@ -1074,25 +1110,6 @@ div {
     visibility: hidden;
 }
 
-.svg {
-    max-height: 650px;
-    @media (max-width: 1200px) {
-        height: 550px;
-    }
-
-    @media (max-width: 768px) {
-        height: 500px;
-    }
-
-    @media (max-width: 640px) {
-        height: 400px;
-    }
-
-    @media (max-width: 475px) {
-        height: 320px;
-    }
-}
-
 .path-2 {
     transition: all 0.3s ease 0s;
     cursor: pointer;
@@ -1106,10 +1123,6 @@ div {
     width: 150px !important;
 }
 
-.map {
-    @include adaptive-value("min-height", 1090, 314, 1);
-}
-
 .svg__parent {
     z-index: 2;
     // height: 100%;
@@ -1120,7 +1133,6 @@ div {
 
 #map-test {
     visibility: visible;
-    visibility: hidden;
     opacity: 1;
     height: 100%;
 
@@ -1154,7 +1166,7 @@ div {
 }
 
 .path._transition {
-    transition: all 1s cubic-bezier(0.24, 0.43, 0.82, 0.6) 0s;
+    transition: all 1s ease 0s;
 }
 
 @import "path";
@@ -1166,3 +1178,34 @@ div {
 @import "path-640";
 @import "path-475";
 @import "path-400";
+
+.svg {
+    transition: all 1s ease 0s;
+}
+
+.svg._hidden {
+    transform: scale(0);
+}
+
+.svg2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    transition: all 1s ease 0s;
+}
+
+.svg2._visible {
+    z-index: 1;
+    transform: scale(1);
+    opacity: 1;
+}
+
+.svg2 .path._small {
+    transform: none !important;
+}
+
+.before {
+    @include adaptive-value("width", 253, 140, 1);
+    text-align: center;
+}

@@ -476,7 +476,7 @@ function mouseover(path, btn, span) {
             span.style.left = `${pathCoords.left - window.scrollX - span.getBoundingClientRect().width}px`;
         }
         else {
-            span.style.left = `${pathCoords.right  - window.scrollX}px`;
+            span.style.left = `${pathCoords.right - window.scrollX}px`;
         }
 
         span.textContent = `${btn.textContent} район`;
