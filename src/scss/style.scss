@@ -7,11 +7,11 @@
     font-family: "proximanova";
 }
 
-img{
+img {
     display: inline-block;
 }
 
-.header{
+.header {
     z-index: 1;
 }
 
@@ -40,8 +40,6 @@ body {
     color: #0079c2;
 }
 
-
-
 .header {
     position: absolute;
     left: 0;
@@ -51,7 +49,7 @@ body {
 
     &__container {
         @media (max-width: 992px) {
-            padding: 0!important;
+            padding: 0 !important;
         }
     }
 
@@ -868,7 +866,7 @@ body {
         @include adaptive-value("margin-bottom", 39, 17, 1);
         @include adaptive-value("padding-bottom", 47, 31, 1);
         & > :not(:last-child) {
-            @include adaptive-value("margin-right", 21, 17, 1);
+            @include adaptive-value("margin-right", 21, 8, 1);
         }
 
         // .footer__top-item
@@ -897,9 +895,5 @@ body {
 
 
 
-
-
 @import "rodnik_page";
 @import "map";
-
-

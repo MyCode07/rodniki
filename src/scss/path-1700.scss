@@ -1,174 +1,141 @@
 @media (max-width: 1700px) {
-    /* scale(4.2) */
     .path1._biger {
-        transform: translate(-26%, -27%) scale(4.2) !important;
+        transform: translate3d(calc(-47% - 88px), -25%, 0) scale(4.5) !important;
     }
 
     .path2._biger {
-        transform: translate(34%, 32%) scale(4.8) !important;
+        transform: translate3d(calc(15% - 88px), 31%, 0) scale(4.4) !important;
     }
 
     .path3._biger {
-        transform: translate(33%, 44%) scale(4.9) !important;
+        transform: translate3d(calc(20% - 88px), 44%, 0) scale(6) !important;
     }
 
     .path4._biger {
-        transform: translate(-10%, -28%) scale(4.35) !important;
+        transform: translate3d(calc(-27% - 88px), -27%, 0) scale(3.5) !important;
     }
 
     .path5._biger {
-        transform:  translate(31%, 16%) scale(4.6) !important;
+        transform: translate3d(calc(18% - 88px), 13%, 0) scale(4.2) !important;
     }
 
     .path6._biger {
-        transform: translate(32%, -5%) scale(4.7) !important;
+        transform: translate3d(calc(13% - 88px), -3%, 0) scale(4.5) !important;
     }
 
     .path7._biger {
-        transform:  translate(33%, 14%) scale(5)  !important;
+        transform: translate3d(calc(11% - 88px), 14%, 0) scale(6) !important;
     }
 
     .path8._biger {
-        transform: translate(26%, 27%) scale(4.2) !important;
-    }
-
-    .path9._biger {
-        transform: translate(37%, 15%) scale(4.2) !important;
-    }
-
-    .path10._biger {
-        transform: translate(-7%, -15%) scale(4.2) !important;
-    }
-
-    .path11._biger {
-        transform: translate(-12%, -19%) scale(4.2) !important;
+        transform: translate3d(calc(1% - 88px), 24%, 0) scale(5.5) !important;
     }
 
     .path12._biger {
-        transform: translate(-26%, -22%) scale(4.2) !important;
+        transform: translate3d(calc(-46% - 88px), -35%, 0) scale(4.5) !important;
     }
 
     .path13._biger {
-        transform: translate(10%, -18%) scale(4.4) !important;
+        transform: translate3d(calc(4% - 88px), -19%, 0) scale(4) !important;
     }
 
     .path14._biger {
-        transform: translate(18%, -15%) scale(5) !important;
+        transform: translate3d(calc(-6% - 88px), -11%, 0) scale(4.5) !important;
     }
 
     .path15._biger {
-        transform: translate(29%, 6%) scale(4.2) !important;
-    }
-
-    .path16._biger {
-        transform: translate(30%, 7%) scale(4.2) !important;
+        transform: translate3d(calc(9% - 88px), 0%, 0) scale(4.5) !important;
     }
 
     .path17._biger {
-        transform: translate(25%, 3%) scale(4.2) !important;
+        transform: translate3d(calc(2% - 88px), -5%, 0) scale(3.6) !important;
     }
 
     .path18._biger {
-        transform: translate(8%, -11%) scale(4) !important;
+        transform: translate3d(calc(-3% - 88px), -11%, 0) scale(4.2) !important;
     }
 
     .path19._biger {
-        transform: translate(26%, 36%) scale(4.2) !important;
+        transform: translate3d(calc(8% - 88px), 33%, 0) scale(5.5) !important;
     }
 
     .path20._biger {
-        transform: translate(32%, 29%) scale(4.2) !important;
+        transform: translate3d(calc(8% - 88px), 25%, 0) scale(4.7) !important;
     }
 
     .path21._biger {
-        transform: translate(20%, 12%) scale(4.2) !important;
+        transform: translate3d(calc(0% - 88px), 6%, 0) scale(4.5) !important;
     }
 
     .path22._biger {
-        transform: translate(24%, 9%) scale(5) !important;
+        transform: translate3d(calc(7% - 88px), 10%, 0) scale(5) !important;
     }
 
     .path23._biger {
-        transform: translate(9%, -2%) scale(4) !important;
+        transform: translate3d(calc(-3% - 88px), -2%, 0) scale(5) !important;
     }
 
     .path24._biger {
-        transform: translate(13.5%, -33%) scale(4.2) !important;
+        transform: translate3d(calc(1% - 88px), -36%, 0) scale(3.8) !important;
     }
 
     .path25._biger {
-        transform: translate(26%, -14%) scale(4.2) !important;
+        transform: translate3d(calc(12% - 88px), -23%, 0) scale(4.5) !important;
     }
 
     .path26._biger {
-        transform: translate(43%, -5%) scale(4.2) !important;
+        transform: translate3d(calc(35% - 88px), -14%, 0) scale(4.4) !important;
     }
 
     .path27._biger {
-        transform: translate(16%, 18%) scale(4.2) !important;
+        transform: translate3d(calc(-3% - 88px), 13%, 0) scale(4.5) !important;
     }
 
     .path28._biger {
-        transform: translate(33%, -7%) scale(4.2) !important;
+        transform: translate3d(calc(13% - 88px), -17%, 0) scale(4.5) !important;
     }
 
     .path29._biger {
-        transform: translate(41%, 6%) scale(4.2) !important;
+        transform: translate3d(calc(22% - 88px), -1%, 0) scale(5) !important;
     }
 
     .path30._biger {
-        transform: translate(-26%, -10%) scale(4.2) !important;
+        transform: translate3d(calc(-39.5% - 88px), -21%, 0) scale(4.1) !important;
     }
 
     .path31._biger {
-        transform: translate(6%, 6%) scale(4.2) !important;
-    }
-
-    .path32._biger {
-        transform: translate(-16%, -20%) scale(4.2) !important;
-    }
-
-    .path33._biger {
-        transform: translate(-16%, -4%) scale(4.2) !important;
+        transform: translate3d(calc(-15% - 88px), -1%, 0) scale(5.5) !important;
     }
 
     .path34._biger {
-        transform: translate(4%, -6%) scale(4.2) !important;
+        transform: translate3d(calc(-17.5% - 88px), -15%, 0) scale(4.5) !important;
     }
 
     .path35._biger {
-        transform: translate(-34%, -23%) scale(4.2) !important;
+        transform: translate3d(calc(-53% - 88px), -36%, 0) scale(4.2) !important;
     }
 
     .path36._biger {
-        transform: translate(-21%, 1%) scale(4.2) !important;
+        transform: translate3d(calc(-38% - 88px), -10%, 0) scale(4.3) !important;
     }
 
     .path37._biger {
-        transform: translate(5%, -17%) scale(4.2) !important;
+        transform: translate3d(calc(-12% - 88px), -29%, 0) scale(4.4) !important;
     }
 
     .path38._biger {
-        transform: translate(-12%, -13%) scale(4.2) !important;
-    }
-
-    .path39._biger {
-        transform: translate(-14%, -14%) scale(4.2) !important;
+        transform: translate3d(calc(-38% - 88px), -25%, 0) scale(4) !important;
     }
 
     .path40._biger {
-        transform: translate(8%, -24%) scale(4.2) !important;
+        transform: translate3d(calc(-9% - 88px), -37%, 0) scale(4.15) !important;
     }
 
     .path41._biger {
-        transform: translate(-20%, -28%) scale(4.2) !important;
-    }
-
-    .path42._biger {
-        transform: translate(36%, 33%) scale(4.2) !important;
+        transform: translate3d(calc(-39% - 88px), -40%, 0) scale(4.4) !important;
     }
 
     .path43._biger {
-        transform: translate(22%, 24%) scale(4.2) !important;
+        transform: translate3d(calc(4% - 88px), 20%, 0) scale(5.8) !important;
     }
 }
