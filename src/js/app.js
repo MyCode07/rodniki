@@ -3,8 +3,14 @@
 const mapIconPath = 'http://erem19si.beget.tech/wp-content/themes/rodnik/assets/img/location.svg';
 function init(path, coordsString) {
     let centerString;
-    if (window.innerWidth > 1200) {
+
+    if (window.innerWidth > 1550) {
         centerString = path.dataset.centerpc.trim().split(',').map((item, accum) => {
+            return +item;
+        })
+    }
+    else if (window.innerWidth > 1200 && window.innerWidth <= 1550) {
+        centerString = path.dataset.center1550.trim().split(',').map((item, accum) => {
             return +item;
         })
     }
@@ -13,6 +19,8 @@ function init(path, coordsString) {
             return +item;
         })
     }
+
+    console.log(centerString);
 
     let center = centerString;
     let coords = coordsString;

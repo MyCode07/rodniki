@@ -16,6 +16,7 @@ img {
 }
 
 body {
+    background-color: #f9f9f9;
     &._noscroll {
         overflow: hidden;
     }
@@ -879,6 +880,19 @@ body {
         }
     }
 
+    // .footer__bottom
+
+    &__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @media (max-width: 992px) {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+    }
+
     // .footer__info
 
     &__info {
@@ -887,13 +901,26 @@ body {
         line-height: 1.22em;
         color: #ffffff;
         @include adaptive-value("font-size", 18, 10, 1);
+        @media (max-width: 992px) {
+            margin-bottom: 7px;
+        }
         @media (max-width: 768px) {
             font-weight: 400;
         }
     }
+
+    // .footer__privacy
+
+    &__privacy {
+        font-style: normal;
+        line-height: 1.22em;
+        font-weight: 400;
+        color: #ffffff;
+        @include adaptive-value("font-size", 14, 10, 1);
+        border-bottom: 1px solid rgb(255, 255, 255);
+        @include adaptive-value("padding-bottom", 6, 3, 1);
+    }
 }
-
-
 
 @import "rodnik_page";
 @import "map";

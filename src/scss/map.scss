@@ -473,6 +473,62 @@
                 min-height: unset;
             }
         }
+
+        // .map__norodnik-title
+
+        &-title {
+            font-style: normal;
+            font-weight: 600;
+            @include adaptive-value("font-size", 36, 28, 1);
+            @include adaptive-value("margin-bottom", 40, 18, 1);
+            line-height: 1.18em;
+            color: #ffffff;
+        }
+
+        // .map__norodnik-selected
+
+        &-selected {
+            background-color: #ffffff;
+            border: 1px dashed #ffffff;
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            font-weight: 600;
+            line-height: 1.18em;
+            @include adaptive-value("font-size", 18, 16, 1);
+            color: #00426a;
+            @include adaptive-value("padding-top", 16, 13, 1);
+            @include adaptive-value("padding-bottom", 16, 13, 1);
+            @include adaptive-value("padding-left", 27, 16, 1);
+            @include adaptive-value("padding-right", 15, 13, 1);
+            max-width: 410px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease 0s;
+            @include adaptive-value("margin-bottom", 49, 25, 1);
+        }
+
+        // .map__norodnik-body
+
+        &-body {
+            border: 3px solid #ffffff;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 410px;
+
+            @media (max-width: 1200px) {
+                max-width: 947px;
+                min-height: 300px;
+                margin: 0 auto;
+            }
+
+            @media (max-width: 992px) {
+                max-width: none;
+                border-width: 2px;
+            }
+        }
     }
 }
 
@@ -763,8 +819,8 @@
 
     width: 100%;
 
-    @media (max-width: 1700px) {
-        // width: 90%;
+    @media (max-width: 1550px) {
+        width: 80%;
     }
 
     @media (max-width: 1200px) {
@@ -1251,16 +1307,10 @@ div {
 
 @import "path";
 @import "path-1700";
+@import "path-1550";
 @import "path-1200";
 @import "path-992";
 @import "path-768";
 @import "path-640";
 @import "path-475";
 @import "path-400";
-
-@media (max-width: 1550px) {
-    .svg,
-    .svg2 {
-        width: 80%;
-    }
-}

@@ -467,23 +467,7 @@
     }
 }
 
-.map__norodnik {
-    @include adaptive-value("padding-top", 350, 40, 1);
-    @media (max-width: 1200px) {
-        padding-top: 40px !important;
-        margin-bottom: 40px;
-    }
-    font-style: normal;
-    font-weight: 600;
-    @include adaptive-value("font-size", 36, 28, 1);
-    line-height: 1.22em;
-    color: #ffffff;
-    display: none;
-    transition: all 1.2s ease 0s;
-    &._active {
-        display: block;
-    }
-}
+
 
 .map__next-btn {
     background: #0079c2;
