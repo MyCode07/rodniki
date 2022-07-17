@@ -783,7 +783,7 @@
     @include adaptive-value("margin-left", 21, 5, 1);
 }
 
-.user_score_hidden {
+.user_score_hidden,.user_score_output {
     position: absolute;
     visibility: hidden;
     opacity: 0;
