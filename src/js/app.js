@@ -212,6 +212,7 @@ function regionAction(path, span, svg, svgparent, i) {
         }
         hoverOnRodnik(rodniki, svgparent);
         slideRodnikiButton();
+        setInLocalStorage(path, i);
     }
 
     if (path.dataset.rodniki == '') {
@@ -778,3 +779,13 @@ function removeElements(elems) {
         }
     }
 }
+
+
+function setInLocalStorage(path, index) {
+    let regionName = {
+        name: path.dataset.name,
+        activeIndex: index
+    }
+    console.log(regionName);
+    localStorage.setItem('region-name', JSON.stringify(regionName));
+};
