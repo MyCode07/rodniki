@@ -1,6 +1,6 @@
 // инит карты
+let mapIconPath = 'https://родникиоренбуржья.рф/wp-content/themes/rodniki/assets/img/location.svg';
 
-const mapIconPath = 'http://erem19si.beget.tech/wp-content/themes/rodnik/assets/img/location.svg';
 function init(path, coordsString) {
     let centerString;
 
@@ -20,7 +20,6 @@ function init(path, coordsString) {
         })
     }
 
-    console.log(centerString);
 
     let center = centerString;
     let coords = coordsString;
@@ -65,13 +64,18 @@ function regionAction(path, span, svg, svgparent, i) {
     if (window.innerWidth <= 1200) {
         document.querySelector('body').classList.add('_loaded');
         setTimeout(() => {
-            document.querySelector('body').classList.add('_loaded2');
-        }, 1300);
-        setTimeout(() => {
-            document.querySelector('body').classList.remove('_loaded');
-            document.querySelector('body').classList.remove('_loaded2');
-        }, 2000);
+            if (flag == true) {
+                document.querySelector('body').classList.add('_loaded2');
+                flag = false;
+                setTimeout(() => {
+                    document.querySelector('body').classList.remove('_loaded');
+                    document.querySelector('body').classList.remove('_loaded2');
+                }, 500);
+            }
+        }, 1000);
     }
+
+    span.classList.add('_zindex');
 
     if (span.classList.contains('_visible')) {
         span.classList.remove('_visible');
@@ -92,6 +96,24 @@ function regionAction(path, span, svg, svgparent, i) {
         svg2.classList.remove('_scaled');
         svg2.classList.add('_visible');
         svg2.append(pathCopy);
+
+        let category = document.querySelectorAll(`[data-category="${path.dataset.name}"]`);
+
+        function rodnikLink() {
+            let arr = [];
+            for (let i = 0; i < category.length; i++) {
+                let mass = {};
+                let element = category[i].closest('li').querySelector('.rodnik__link');
+                let href = element.dataset.href;
+                let location = element.dataset.rodniklocation;
+                let name = element.dataset.rodnikname;
+                mass.href = href;
+                mass.location = location;
+                mass.name = name;
+                arr.push(mass);
+            }
+            return arr;
+        }
 
         let centers = path.dataset.coords.trim().split('-').map((item, accum) => {
             let coords = item.trim().split(',').map((index, acc) => {
@@ -123,6 +145,7 @@ function regionAction(path, span, svg, svgparent, i) {
             for (let j = 0; j < centers.length; j++) {
                 let top = marks[j].getBoundingClientRect().top - map.getBoundingClientRect().top;
                 let left = marks[j].getBoundingClientRect().left - map.getBoundingClientRect().left;
+                let info = rodnikLink();
                 let icon = `<a href="" style="left: ${left}px; top: ${top}px">
                                 <svg class="mini-icon" id="mini-${i + 1}-${j + 1}"  width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g filter="url(#filter0_d_45_787)">
@@ -144,7 +167,6 @@ function regionAction(path, span, svg, svgparent, i) {
                                 </svg>
                             </a>`;
 
-
                 svgparent.insertAdjacentHTML('beforeend', icon);
             }
             svgparent.classList.add('_active')
@@ -159,13 +181,15 @@ function regionAction(path, span, svg, svgparent, i) {
         div.classList.add('map__rodniki-items');
 
         for (let n = 0; n < rodniki.length; n++) {
-            const item = `  <a href="" class="rodniki__item">
+            let info = rodnikLink();
+
+            const item = `  <a href="${info[n].href}" class="rodniki__item">
                                 <div class="rodniki__item-info">
-                                    <span class="rodniki__item-title">Родник «${rodniki[n]}»</span>
-                                    <span class="rodniki__item-descr">с. Никольское, Оренбургский район,
+                                    <span class="rodniki__item-title">Родник «${info[n].name}»</span>
+                                    <span class="rodniki__item-descr"> ${info[n].location},
                                         ${centers[n]}</span>
                                 </div>
-                                <img src="img/location.svg" alt="">
+                                <img src="https://родникиоренбуржья.рф/wp-content/themes/rodniki/assets/img/location.svg" alt="">
                             </a>`;
             rodnik.push(item);
             rodnik2.push(item);
@@ -213,6 +237,7 @@ function regionAction(path, span, svg, svgparent, i) {
         hoverOnRodnik(rodniki, svgparent);
         slideRodnikiButton();
         setInLocalStorage(path, i);
+
     }
 
     if (path.dataset.rodniki == '') {
@@ -235,6 +260,8 @@ function regionAction(path, span, svg, svgparent, i) {
     }
     rodnikActions();
 }
+
+let flag = false;
 
 // наведени на иконки родника и на ссылки родника
 function hoverOnRodnik(rodniki, svgPerent) {
@@ -264,7 +291,6 @@ function hoverOnRodnik(rodniki, svgPerent) {
             if (window.innerWidth <= 1200) {
                 appendRodnik(0)
                 hover(links[0], rodniki[0], span);
-
                 links[i].addEventListener('click', function (e) {
                     e.preventDefault();
                     let labels = document.querySelectorAll('.map__rodniki .select__label');
@@ -425,6 +451,7 @@ function mouseleave(path, btn, span) {
     document.querySelector('.map__regions-selected').textContent = ``;
 }
 
+
 // оснавная функция
 const allPaths = document.querySelectorAll('.path');
 const paths2 = document.querySelectorAll('.path[data-index]');
@@ -436,6 +463,7 @@ const regionBtns = document.querySelectorAll('.region-btn');
 let labels = document.querySelectorAll('.map__regions .select__label');
 
 for (let i = 0; i < paths.length; i++) {
+    const path = paths[i];
     // if (window.innerWidth >= 768) {
     regionIitIcons(paths[i], svgparent, i);
     // }
@@ -444,43 +472,43 @@ for (let i = 0; i < paths.length; i++) {
 
     const xCenter = (boundingBox.width / 2) + boundingBox.x
     const yCenter = (boundingBox.height / 2) + boundingBox.y
-    paths[i].style.transformOrigin = ` ${xCenter}px ${yCenter}px`;
+    path.style.transformOrigin = ` ${xCenter}px ${yCenter}px`;
 
-    paths[i].addEventListener('mouseover', function (e) {
-        mouseover(paths[i], regionBtns[i], span);
+    path.addEventListener('mouseover', function (e) {
+        mouseover(path, regionBtns[i], span);
     })
 
-    paths[i].addEventListener('mouseleave', function () {
-        mouseleave(paths[i], regionBtns[i], span);
+    path.addEventListener('mouseleave', function () {
+        mouseleave(path, regionBtns[i], span);
     })
 
-    paths[i].addEventListener('click', function () {
-        goToRegion(paths[i], span, svg, svgparent, i);
+    path.addEventListener('click', function () {
+        goToRegion(path, span, svg, svgparent, i);
         if (window.innerWidth <= 1200) {
             cahngeRegionSelect(document.querySelector('.map__regions'), labels[i]);
         }
     })
 
     regionBtns[i].addEventListener('mouseover', function (e) {
-        mouseover(paths[i], regionBtns[i], span);
+        mouseover(path, regionBtns[i], span);
         paths[i].classList.add('_hovered');
 
     })
 
     regionBtns[i].addEventListener('mouseleave', function () {
-        if (!paths[i].classList.contains('_biger')) {
-            mouseleave(paths[i], regionBtns[i], span);
+        if (!paths.classList.contains('_biger')) {
+            mouseleave(path, regionBtns[i], span);
             paths[i].classList.remove('_hovered');
         }
     })
 
     regionBtns[i].addEventListener('click', function () {
-        goToRegion(paths[i], span, svg, svgparent, i);
+        goToRegion(path, span, svg, svgparent, i);
     })
 
     labels[i].addEventListener('click', function () {
-        goToRegion(paths[i], span, svg, svgparent, i);
-        mouseover(paths[i], regionBtns[i], span);
+        goToRegion(path, span, svg, svgparent, i);
+        mouseover(path, regionBtns[i], span);
         span.classList.remove('_zindex');
     })
 }
@@ -497,6 +525,12 @@ if (nextBtn) {
                 item.classList.add('_hidden');
             });
         }
+    });
+}
+
+if (document.querySelector('.breadcamps__back a')) {
+    document.querySelector('.breadcamps__back a').addEventListener('click', function (e) {
+        localStorage.setItem('region', JSON.stringify({ name: e.target.dataset.regionname }))
     });
 }
 
@@ -543,6 +577,7 @@ if (selectSingle) {
 
 // клик на опции селекта переход на страницу родника
 function rodnikActions() {
+    flag = true
     let labels = document.querySelectorAll('.map__rodniki .select__label');
     if (labels) {
         for (let i = 0; i < labels.length; i++) {
@@ -564,7 +599,6 @@ function appendRodnik(i) {
     document.querySelector('.map__next').classList.add('_active');
     let rodnik = document.querySelectorAll('.rodniki__item')[i].cloneNode(true);
     let next = document.querySelector('.map__next-content');
-
     links.forEach(link => {
         link.querySelector('svg').classList.remove('_hovered');
     })
@@ -573,8 +607,12 @@ function appendRodnik(i) {
 
     if (next.querySelector('.rodniki__item')) {
         next.removeChild(next.querySelector('.rodniki__item'));
+
     }
     next.append(rodnik);
+    console.log('append rodnik');
+    let link = next.querySelector('.rodniki__item').href;
+    document.querySelector('.map__next-link').href = link;
 }
 
 // высота карты
@@ -598,7 +636,6 @@ document.addEventListener('click', function (e) {
     let regions = document.querySelector('.map__regions');
     let roniki = document.querySelector('.map__rodniki');
 
-
     if (document.querySelector('.map__rodniki-items')) {
         const items = document.querySelectorAll('.map__rodniki-items');
         const pages = document.querySelectorAll('.map__rodniki-select-pages input');
@@ -616,16 +653,29 @@ document.addEventListener('click', function (e) {
         let svg = document.querySelector('.svg');
         let svg2 = document.querySelector('.svg2');
 
+        span.classList.remove('_zindex');
+
+
         if (window.innerWidth <= 1200 && !regions.classList.contains('_active')) {
             document.querySelector('body').classList.add('_loaded');
             setTimeout(() => {
-                document.querySelector('body').classList.add('_loaded2');
-            }, 1300);
-            setTimeout(() => {
-                document.querySelector('body').classList.remove('_loaded');
-                document.querySelector('body').classList.remove('_loaded2');
-            }, 2000);
+                if (flag == true) {
+                    document.querySelector('body').classList.add('_loaded2');
+                    flag = false;
+                    setTimeout(() => {
+                        document.querySelector('body').classList.remove('_loaded');
+                        document.querySelector('body').classList.remove('_loaded2');
+                    }, 500);
+                }
+            }, 1500);
         }
+        setTimeout(() => {
+            flag = true;
+        }, 1000);
+
+        setTimeout(() => {
+            document.querySelector('.before').classList.add('_visible');
+        }, 1200);
 
         if (document.querySelector('.svg__parent').classList.contains('_height0')) {
             document.querySelector('.svg__parent').classList.remove('_height0');
@@ -654,9 +704,6 @@ document.addEventListener('click', function (e) {
             if (window.innerWidth <= 1200) {
                 document.querySelector('.map__next-btn').classList.add('_active');
             }
-            setTimeout(() => {
-                document.querySelector('.before').classList.add('_visible');
-            }, 1200);
 
             removeElements([...document.querySelectorAll('.mini-icon'), roniki.querySelectorAll('.select__label'), roniki.querySelectorAll('.select__input')]);
 
@@ -780,12 +827,11 @@ function removeElements(elems) {
     }
 }
 
-
 function setInLocalStorage(path, index) {
     let regionName = {
         name: path.dataset.name,
         activeIndex: index
     }
-    console.log(regionName);
+    // console.log(regionName);
     localStorage.setItem('region-name', JSON.stringify(regionName));
 };

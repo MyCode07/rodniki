@@ -83,10 +83,15 @@
                     <img class="header__menu-gaz" src="img/gaz.svg" alt="">
                 </nav>
 
-                <a href="" class="header__logo">
-                    <img class="logo-sovet" src="img/logo-sovet.svg" alt="">
-                    <img class="logo-main" src="img/logo.svg" alt="">
-                </a>
+                <div class="header__logo">
+                    <a href="">
+                        <img class="logo-sovet" src="img/logo-sovet.svg" alt="">
+
+                    </a>
+                    <a href="">
+                        <img class="logo-main" src="img/logo.svg" alt="">
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -100,7 +105,7 @@
                     <div class="breadcamps">
                         <ol>
                             <li class="breadcamps__back">
-                                <a href="/">Абдулинский район</a>
+                                <a href="/" data-regionname="Абдулинский">Абдулинский район</a>
                             </li>
                             <a href="/" class="breadcamps__back-btn">
                                 <img src="img/slider-arrow.svg" alt="">
@@ -482,7 +487,7 @@
         </div>
     </footer>
 
-
+    <script src="files/no-map.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     <script src="files/swiper.min.js"></script>
