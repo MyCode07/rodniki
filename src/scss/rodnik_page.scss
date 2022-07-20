@@ -983,6 +983,35 @@
 
         a {
             color: inherit;
+            display: flex;
+            align-items: center;
+
+            span,
+            img {
+                pointer-events: none;
+            }
+
+            span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @include adaptive-value("width", 38, 16, 1);
+                @include adaptive-value("height", 38, 16, 1);
+                @include adaptive-value("flex-basis", 38, 16, 1);
+                flex-grow: 0;
+                flex-shrink: 0;
+                background-color: #fff;
+                border-radius: 50%;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+                @include adaptive-value("margin-left", 25, 9, 1);
+                @include adaptive-value("margin-right", 25, 9, 1);
+
+                cursor: pointer;
+
+                img {
+                    @include adaptive-value("width", 12, 5, 1);
+                }
+            }
         }
     }
 
@@ -992,26 +1021,26 @@
         // .breadcamps__back-btn
 
         &-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            @include adaptive-value("width", 38, 16, 1);
-            @include adaptive-value("height", 38, 16, 1);
-            @include adaptive-value("flex-basis", 38, 16, 1);
-            flex-grow: 0;
-            flex-shrink: 0;
-            background-color: #fff;
-            border-radius: 50%;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-            @include adaptive-value("margin-left", 25, 9, 1);
-            @include adaptive-value("margin-right", 25, 9, 1);
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
+            // @include adaptive-value("width", 38, 16, 1);
+            // @include adaptive-value("height", 38, 16, 1);
+            // @include adaptive-value("flex-basis", 38, 16, 1);
+            // flex-grow: 0;
+            // flex-shrink: 0;
+            // background-color: #fff;
+            // border-radius: 50%;
+            // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+            // @include adaptive-value("margin-left", 25, 9, 1);
+            // @include adaptive-value("margin-right", 25, 9, 1);
 
-            cursor: pointer;
+            // cursor: pointer;
 
-            img {
-                @include adaptive-value("width", 12, 5, 1);
-                pointer-events: none;
-            }
+            // img {
+            //     @include adaptive-value("width", 12, 5, 1);
+            //     pointer-events: none;
+            // }
         }
 
         // .breadcamps__current
