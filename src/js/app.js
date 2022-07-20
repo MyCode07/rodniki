@@ -98,7 +98,6 @@ function regionAction(path, span, svg, svgparent, i) {
         svg2.append(pathCopy);
 
         let category = document.querySelectorAll(`[data-category="${path.dataset.name}"]`);
-
         function rodnikLink() {
             let arr = [];
             for (let i = 0; i < category.length; i++) {
@@ -145,7 +144,6 @@ function regionAction(path, span, svg, svgparent, i) {
             for (let j = 0; j < centers.length; j++) {
                 let top = marks[j].getBoundingClientRect().top - map.getBoundingClientRect().top;
                 let left = marks[j].getBoundingClientRect().left - map.getBoundingClientRect().left;
-                let info = rodnikLink();
                 let icon = `<a href="" style="left: ${left}px; top: ${top}px">
                                 <svg class="mini-icon" id="mini-${i + 1}-${j + 1}"  width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g filter="url(#filter0_d_45_787)">
@@ -237,7 +235,6 @@ function regionAction(path, span, svg, svgparent, i) {
         hoverOnRodnik(rodniki, svgparent);
         slideRodnikiButton();
         setInLocalStorage(path, i);
-
     }
 
     if (path.dataset.rodniki == '') {

@@ -125,6 +125,10 @@ body {
             }
         }
 
+        @media (max-width:370px){
+            width: 75%;
+        }
+
         // .header__menu-close
 
         &-close {
@@ -141,6 +145,14 @@ body {
             margin-left: 34px;
             margin-bottom: 66px;
             cursor: pointer;
+
+            @media (max-height:500px){
+                margin-bottom: 30px;
+            }
+
+            @media (max-height:450px){
+                margin-bottom: 5px;
+            }
 
             display: none;
 

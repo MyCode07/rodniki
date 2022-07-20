@@ -98,7 +98,6 @@ function regionAction(path, span, svg, svgparent, i) {
         svg2.append(pathCopy);
 
         let category = document.querySelectorAll(`[data-category="${path.dataset.name}"]`);
-
         function rodnikLink() {
             let arr = [];
             for (let i = 0; i < category.length; i++) {
@@ -145,7 +144,6 @@ function regionAction(path, span, svg, svgparent, i) {
             for (let j = 0; j < centers.length; j++) {
                 let top = marks[j].getBoundingClientRect().top - map.getBoundingClientRect().top;
                 let left = marks[j].getBoundingClientRect().left - map.getBoundingClientRect().left;
-                let info = rodnikLink();
                 let icon = `<a href="" style="left: ${left}px; top: ${top}px">
                                 <svg class="mini-icon" id="mini-${i + 1}-${j + 1}"  width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g filter="url(#filter0_d_45_787)">
@@ -290,7 +288,6 @@ function hoverOnRodnik(rodniki, svgPerent) {
             if (window.innerWidth <= 1200) {
                 appendRodnik(0)
                 hover(links[0], rodniki[0], span);
-
                 links[i].addEventListener('click', function (e) {
                     e.preventDefault();
                     let labels = document.querySelectorAll('.map__rodniki .select__label');
@@ -452,7 +449,6 @@ function mouseleave(path, btn, span) {
 }
 
 
-
 // оснавная функция
 const allPaths = document.querySelectorAll('.path');
 const paths2 = document.querySelectorAll('.path[data-index]');
@@ -464,6 +460,7 @@ const regionBtns = document.querySelectorAll('.region-btn');
 let labels = document.querySelectorAll('.map__regions .select__label');
 
 for (let i = 0; i < paths.length; i++) {
+    const path = paths[i];
     // if (window.innerWidth >= 768) {
     regionIitIcons(paths[i], svgparent, i);
     // }
@@ -472,43 +469,43 @@ for (let i = 0; i < paths.length; i++) {
 
     const xCenter = (boundingBox.width / 2) + boundingBox.x
     const yCenter = (boundingBox.height / 2) + boundingBox.y
-    paths[i].style.transformOrigin = ` ${xCenter}px ${yCenter}px`;
+    path.style.transformOrigin = ` ${xCenter}px ${yCenter}px`;
 
-    paths[i].addEventListener('mouseover', function (e) {
-        mouseover(paths[i], regionBtns[i], span);
+    path.addEventListener('mouseover', function (e) {
+        mouseover(path, regionBtns[i], span);
     })
 
-    paths[i].addEventListener('mouseleave', function () {
-        mouseleave(paths[i], regionBtns[i], span);
+    path.addEventListener('mouseleave', function () {
+        mouseleave(path, regionBtns[i], span);
     })
 
-    paths[i].addEventListener('click', function () {
-        goToRegion(paths[i], span, svg, svgparent, i);
+    path.addEventListener('click', function () {
+        goToRegion(path, span, svg, svgparent, i);
         if (window.innerWidth <= 1200) {
             cahngeRegionSelect(document.querySelector('.map__regions'), labels[i]);
         }
     })
 
     regionBtns[i].addEventListener('mouseover', function (e) {
-        mouseover(paths[i], regionBtns[i], span);
+        mouseover(path, regionBtns[i], span);
         paths[i].classList.add('_hovered');
 
     })
 
     regionBtns[i].addEventListener('mouseleave', function () {
-        if (!paths[i].classList.contains('_biger')) {
-            mouseleave(paths[i], regionBtns[i], span);
+        if (!paths.classList.contains('_biger')) {
+            mouseleave(path, regionBtns[i], span);
             paths[i].classList.remove('_hovered');
         }
     })
 
     regionBtns[i].addEventListener('click', function () {
-        goToRegion(paths[i], span, svg, svgparent, i);
+        goToRegion(path, span, svg, svgparent, i);
     })
 
     labels[i].addEventListener('click', function () {
-        goToRegion(paths[i], span, svg, svgparent, i);
-        mouseover(paths[i], regionBtns[i], span);
+        goToRegion(path, span, svg, svgparent, i);
+        mouseover(path, regionBtns[i], span);
         span.classList.remove('_zindex');
     })
 }
@@ -610,6 +607,7 @@ function appendRodnik(i) {
 
     }
     next.append(rodnik);
+    console.log('append rodnik');
     let link = next.querySelector('.rodniki__item').href;
     document.querySelector('.map__next-link').href = link;
 }
