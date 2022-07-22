@@ -56,102 +56,124 @@ function init(path, coordsString) {
     // map.behaviors.disable(['scrollZoom']); // отключаем скролл карты (опционально)
 }
 
-// загрузка родников района
-function regionAction(path, span, svg, svgparent, i) {
-    let svg2 = document.querySelector('.svg2');
-
-    if (window.innerWidth <= 1200) {
-        document.querySelector('body').classList.add('_loaded');
-        setTimeout(() => {
-            if (flag == true) {
+function findImage() {
+    document.querySelector('body').classList.add('_loaded');
+    let interval = setInterval(() => {
+        const image = document.querySelector('.map__next-content').querySelector('img')
+        if (image) {
+            clearInterval(interval);
+            setTimeout(() => {
                 document.querySelector('body').classList.add('_loaded2');
-                flag = false;
                 setTimeout(() => {
                     document.querySelector('body').classList.remove('_loaded');
                     document.querySelector('body').classList.remove('_loaded2');
-                }, 1200);
-            }
-        }, 1500);
-    }
-
-    span.classList.add('_zindex');
-
-    if (span.classList.contains('_visible')) {
-        span.classList.remove('_visible');
-    }
-    span.addEventListener('mouseenter', () => {
-        span.classList.remove('_visible');
-    })
-
-    path.classList.add('_init');
-    setTimeout(() => {
-        svg.classList.add('_hidden')
-    }, 300);
-
-    let pathCopy = path.cloneNode(true);
-    path = pathCopy;
-
-    if (path.dataset.coords != '' && !path.classList.contains('_biger')) {
-        svg2.classList.remove('_scaled');
-        svg2.classList.add('_visible');
-        svg2.append(pathCopy);
-
-        let category = document.querySelectorAll(`[data-category="${path.dataset.name}"]`);
-        function rodnikLink() {
-            let arr = [];
-            for (let i = 0; i < category.length; i++) {
-                let mass = {};
-                let element = category[i].closest('li').querySelector('.rodnik__link');
-                let href = element.dataset.href;
-                let location = element.dataset.rodniklocation;
-                let name = element.dataset.rodnikname;
-                mass.href = href;
-                mass.location = location;
-                mass.name = name;
-                arr.push(mass);
-            }
-            return arr;
+                }, 1000);
+            }, 1000);
         }
+    }, 100);
+}
 
-        let centers = path.dataset.coords.trim().split('-').map((item, accum) => {
-            let coords = item.trim().split(',').map((index, acc) => {
-                return +index;
-            })
-            return coords;
-        })
+function preLoadNullRegions() {
+    document.querySelector('body').classList.add('_loaded');
+    setTimeout(() => {
+        if (flag == true) {
+            document.querySelector('body').classList.add('_loaded2');
+            flag = false;
+            setTimeout(() => {
+                document.querySelector('body').classList.remove('_loaded');
+                document.querySelector('body').classList.remove('_loaded2');
+            }, 1200);
+        }
+    }, 1500);
+}
 
-        ymaps.ready(init(path, centers));
+// загрузка родников района
+function regionAction(path, span, svg, svgparent, i) {
+    if (!path.classList.contains('_init')) {
+        path.classList.add('_init');
+        let svg2 = document.querySelector('.svg2');
+        span.classList.add('_zindex');
+
         if (span.classList.contains('_visible')) {
             span.classList.remove('_visible');
         }
+        span.addEventListener('mouseenter', () => {
+            span.classList.remove('_visible');
+        })
 
         setTimeout(() => {
-            path.classList.add('_biger');
+            svg.classList.add('_hidden')
         }, 300);
 
-        setTimeout(() => {
-            document.querySelector('.map__rodniki').classList.add('_active');
-            document.querySelector('.map__regions').classList.remove('_active');
-        }, 100);
+        let pathCopy = path.cloneNode(true);
+        path = pathCopy;
 
-        let map = document.querySelector('#map-test');
-        if (window.innerWidth <= 1200) {
-            document.querySelector('.map__next').classList.add('_active');
-        }
+        if (path.dataset.coords != '' && !path.classList.contains('_biger')) {
 
-        let timeout;
-        if (window.innerWidth > 1200) {
-            timeout = 1000
-        }
-        else {
-            timeout = 200
-        }
-        setTimeout(() => {
-            let marks = document.querySelectorAll('.ymaps-2-1-79-image');
-            for (let j = 0; j < centers.length; j++) {
-                let top = marks[j].getBoundingClientRect().top - map.getBoundingClientRect().top;
-                let left = marks[j].getBoundingClientRect().left - map.getBoundingClientRect().left;
-                let icon = `<a href="" style="left: ${left}px; top: ${top}px">
+            if (window.innerWidth <= 1200) {
+                findImage();
+            }
+
+            svg2.classList.remove('_scaled');
+            svg2.classList.add('_visible');
+            svg2.append(pathCopy);
+
+            let category = document.querySelectorAll(`[data-category="${path.dataset.name}"]`);
+            function rodnikLink() {
+                let arr = [];
+                for (let i = 0; i < category.length; i++) {
+                    let mass = {};
+                    let element = category[i].closest('li').querySelector('.rodnik__link');
+                    let href = element.dataset.href;
+                    let location = element.dataset.rodniklocation;
+                    let name = element.dataset.rodnikname;
+                    mass.href = href;
+                    mass.location = location;
+                    mass.name = name;
+                    arr.push(mass);
+                }
+                return arr;
+            }
+
+            let centers = path.dataset.coords.trim().split('-').map((item, accum) => {
+                let coords = item.trim().split(',').map((index, acc) => {
+                    return +index;
+                })
+                return coords;
+            })
+
+            ymaps.ready(init(path, centers));
+            if (span.classList.contains('_visible')) {
+                span.classList.remove('_visible');
+            }
+
+            setTimeout(() => {
+                path.classList.add('_biger');
+            }, 300);
+
+            setTimeout(() => {
+                document.querySelector('.map__rodniki').classList.add('_active');
+                document.querySelector('.map__regions').classList.remove('_active');
+            }, 100);
+
+            let map = document.querySelector('#map-test');
+            if (window.innerWidth <= 1200) {
+                document.querySelector('.map__next').classList.add('_active');
+            }
+
+            let timeout;
+            if (window.innerWidth > 1200) {
+                timeout = 1000
+            }
+            else {
+                timeout = 200
+            }
+            setTimeout(() => {
+                let marks = document.querySelectorAll('.ymaps-2-1-79-image');
+                for (let j = 0; j < centers.length; j++) {
+                    let top = marks[j].getBoundingClientRect().top - map.getBoundingClientRect().top;
+                    let left = marks[j].getBoundingClientRect().left - map.getBoundingClientRect().left;
+                    let icon = `<a href="" style="left: ${left}px; top: ${top}px">
                                 <svg class="mini-icon" id="mini-${i + 1}-${j + 1}"  width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g filter="url(#filter0_d_45_787)">
                                     <rect class="mini-rect" x="4" width="41.5037" height="41.4162" rx="20.7081" />
@@ -172,25 +194,25 @@ function regionAction(path, span, svg, svgparent, i) {
                                 </svg>
                             </a>`;
 
-                svgparent.insertAdjacentHTML('beforeend', icon);
-            }
-            svgparent.classList.add('_active');
-            hoverOnRodnik(rodniki, svgparent);
-        }, timeout);
+                    svgparent.insertAdjacentHTML('beforeend', icon);
+                }
+                svgparent.classList.add('_active');
+                hoverOnRodnik(rodniki, svgparent);
+            }, timeout);
 
-        const rodniki = path.dataset.rodniki.trim().split(',');
+            const rodniki = path.dataset.rodniki.trim().split(',');
 
 
-        let rodnik = [];
-        let rodnik2 = [];
-        let count = 0;
-        let div = document.createElement('div');
-        div.classList.add('map__rodniki-items');
+            let rodnik = [];
+            let rodnik2 = [];
+            let count = 0;
+            let div = document.createElement('div');
+            div.classList.add('map__rodniki-items');
 
-        for (let n = 0; n < rodniki.length; n++) {
-            let info = rodnikLink();
+            for (let n = 0; n < rodniki.length; n++) {
+                let info = rodnikLink();
 
-            const item = `  <a href="${info[n].href}" class="rodniki__item">
+                const item = `  <a href="${info[n].href}" class="rodniki__item">
                                 <div class="rodniki__item-info">
                                     <span class="rodniki__item-title">Родник «${info[n].name}»</span>
                                     <span class="rodniki__item-descr"> ${info[n].location},
@@ -198,72 +220,73 @@ function regionAction(path, span, svg, svgparent, i) {
                                 </div>
                                 <img src="https://родникиоренбуржья.рф/wp-content/themes/rodniki/assets/img/location.svg" alt="">
                             </a>`;
-            rodnik.push(item);
-            rodnik2.push(item);
+                rodnik.push(item);
+                rodnik2.push(item);
 
-            if (rodniki.length < 3) {
-                rodnik.map(item => div.insertAdjacentHTML('beforeend', item));
-                document.querySelector('.map__rodniki-body').append(div);
-                rodnik = [];
+                if (rodniki.length < 3) {
+                    rodnik.map(item => div.insertAdjacentHTML('beforeend', item));
+                    document.querySelector('.map__rodniki-body').append(div);
+                    rodnik = [];
+                }
+
+                if (rodnik.length > count && rodnik.length % 3 == 0) {
+                    let slice = rodnik.slice(count, count + 3);
+                    let div = document.createElement('div');
+                    div.classList.add('map__rodniki-items');
+                    slice.map(item => div.insertAdjacentHTML('beforeend', item));
+                    document.querySelector('.map__rodniki-body').append(div);
+                    count += 3;
+                }
+
+                addIntoRodnikSelect(n, rodniki[n]);
             }
-
-            if (rodnik.length > count && rodnik.length % 3 == 0) {
-                let slice = rodnik.slice(count, count + 3);
+            if (rodnik.length > count) {
+                let slice = rodnik.slice(count, rodnik.length);
                 let div = document.createElement('div');
                 div.classList.add('map__rodniki-items');
-                slice.map(item => div.insertAdjacentHTML('beforeend', item));
+                div.insertAdjacentHTML('beforeend', slice);
                 document.querySelector('.map__rodniki-body').append(div);
-                count += 3;
             }
 
-            addIntoRodnikSelect(n, rodniki[n]);
-        }
-        if (rodnik.length > count) {
-            let slice = rodnik.slice(count, rodnik.length);
-            let div = document.createElement('div');
-            div.classList.add('map__rodniki-items');
-            div.insertAdjacentHTML('beforeend', slice);
-            document.querySelector('.map__rodniki-body').append(div);
-        }
-
-        if (document.querySelector('.map__rodniki-items')) {
-            const items = document.querySelectorAll('.map__rodniki-items');
-            items[0].classList.add('_visible');
-            for (let i = 0; i < items.length; i++) {
-                if (items.length > 1) {
-                    document.querySelector('.map__rodniki-select').style.display = 'flex';
-                    let input = document.createElement('input');
-                    input.setAttribute('readonly', '');
-                    input.classList.add('_page');
-                    input.type = 'text';
-                    input.value = i + 1;
-                    document.querySelector('.map__rodniki-select-pages').append(input);
+            if (document.querySelector('.map__rodniki-items')) {
+                const items = document.querySelectorAll('.map__rodniki-items');
+                items[0].classList.add('_visible');
+                for (let i = 0; i < items.length; i++) {
+                    if (items.length > 1) {
+                        document.querySelector('.map__rodniki-select').style.display = 'flex';
+                        let input = document.createElement('input');
+                        input.setAttribute('readonly', '');
+                        input.classList.add('_page');
+                        input.type = 'text';
+                        input.value = i + 1;
+                        document.querySelector('.map__rodniki-select-pages').append(input);
+                    }
                 }
             }
+            slideRodnikiButton();
         }
-        slideRodnikiButton();
-    }
 
-    if (path.dataset.rodniki == '') {
-        if (window.innerWidth > 1200) {
-            svg2.append(pathCopy);
-            svg2.classList.remove('_scaled');
-            svg2.classList.add('_visible');
-            path.classList.add('_init');
+        if (path.dataset.rodniki == '') {
+            if (window.innerWidth > 1200) {
+                svg2.append(pathCopy);
+                svg2.classList.remove('_scaled');
+                svg2.classList.add('_visible');
+                path.classList.add('_init');
+                setTimeout(() => {
+                    path.classList.add('_biger');
+                }, 300);
+            }
+            else {
+                svgparent.classList.add('_height0');
+                preLoadNullRegions()
+            }
             setTimeout(() => {
-                path.classList.add('_biger');
-            }, 300);
+                document.querySelector('.map__regions').classList.remove('_active');
+                document.querySelector('.map__norodnik').classList.add('_active');
+            }, 100);
         }
-        else {
-            svgparent.classList.add('_height0');
-        }
-        setTimeout(() => {
-            document.querySelector('.map__regions').classList.remove('_active');
-            document.querySelector('.map__norodnik').classList.add('_active');
-        }, 100);
+        rodnikActions();
     }
-    rodnikActions();
-    removeRegionName();
 }
 
 let flag = false;
@@ -299,7 +322,7 @@ function hoverOnRodnik(rodniki, svgPerent) {
                 e.preventDefault();
                 let labels = document.querySelectorAll('.map__rodniki .select__label');
                 cahngeRegionSelect(document.querySelector('.map__rodniki'), labels[i])
-                 appendRodnik(i)
+                appendRodnik(i)
             })
         }
 
@@ -454,7 +477,6 @@ function mouseleave(path, btn, span) {
     document.querySelector('.map__regions-selected').textContent = ``;
 }
 
-
 // оснавная функция
 const allPaths = document.querySelectorAll('.path');
 const paths2 = document.querySelectorAll('.path[data-index]');
@@ -500,7 +522,6 @@ for (let i = 0; i < paths.length; i++) {
         mouseover(path, regionBtns[i], span);
         path.classList.add('_hovered');
     })
-    getFromLocalStorage(path, span, svg, svgparent, labels);
 }
 
 document.addEventListener('click', function (e) {
@@ -511,7 +532,7 @@ document.addEventListener('click', function (e) {
         if (window.innerWidth <= 1200) {
             cahngeRegionSelect(document.querySelector('.map__regions'), labels[index]);
         }
-        removeRegionName();
+        // removeRegionName();
     }
     if (targetEl.classList.contains('region-btn')) {
         let index = +targetEl.dataset.index
@@ -520,7 +541,6 @@ document.addEventListener('click', function (e) {
 
     if (targetEl.classList.contains('select__label') && targetEl.closest('.map__regions')) {
         let index = +targetEl.dataset.index
-        console.log(index);
         goToRegion(paths[index], span, svg, svgparent, index);
         mouseover(paths[index], regionBtns[index], span);
         span.classList.remove('_zindex');
@@ -551,19 +571,16 @@ if (nextBtn) {
                 item.classList.add('_hidden');
             });
         }
-        removeRegionName();
+        // removeRegionName();
     });
 }
 
-function setInlocalStorage(element) {
-    if (element) {
-        element.addEventListener('click', function (e) {
-            localStorage.setItem('region', JSON.stringify({ name: e.target.dataset.regionname }))
-        });
-    }
+let abdulino = document.querySelector('.path19');
+if (abdulino) {
+    let abdulIndex = +abdulino.dataset.index;
+    abdulino.classList.add('_hovered')
+    mouseover(abdulino, regionBtns[abdulIndex], span);
 }
-setInlocalStorage(document.querySelector('.breadcamps__back a'));
-setInlocalStorage(document.querySelector('.back')); 
 
 // добавление родников  в селект
 function addIntoRodnikSelect(i, rodnik) {
@@ -590,7 +607,7 @@ function rodnikActions() {
                     appendRodnik(i);
                 }
                 else {
-                    // window.location.href = a[i].href;
+                    window.location.href = document.querySelectorAll('.map__rodniki-items a')[i].href;
                 }
             })
         }
@@ -614,7 +631,6 @@ function appendRodnik(i) {
 
     }
     next.append(rodnik);
-    console.log('append rodnik');
     let link = next.querySelector('.rodniki__item').href;
     document.querySelector('.map__next-link').href = link;
 }
@@ -831,30 +847,6 @@ function removeElements(elems) {
     }
 }
 
-function getFromLocalStorage(path, span, svg, svgparent, labels) {
-    let regionName = JSON.parse(localStorage.getItem('region'));
-    let abdulino = document.querySelector('.path19');
-    if (regionName && regionName.name == path.dataset.name) {
-        let i = +path.dataset.index;
-        if (window.innerWidth <= 1200) {
-            abdulino.classList.remove('_hovered');
-            goToRegion(path, span, svg, svgparent, i);
-            mouseover(paths[i], regionBtns[i], span);
-            console.log(i);
-            span.classList.remove('_zindex');
-            return;
-        }
-        else {
-            mouseover(path, regionBtns[i], span);
-            path.classList.add('_hovered');
-        }
-    }
-    if (!regionName) {
-        abdulino.classList.add('_hovered')
-        mouseover(paths[0], regionBtns[0], span);
-    }
-};
-
 // клик по заголовку селекта
 const selectSingle = document.querySelectorAll('.select');
 if (selectSingle) {
@@ -878,10 +870,4 @@ if (selectSingle) {
             }
         }
     })
-}
-
-function removeRegionName() {
-    if (localStorage.getItem('region')) {
-        localStorage.removeItem('region');
-    }
 }

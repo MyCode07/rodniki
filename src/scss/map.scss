@@ -1165,6 +1165,9 @@
 
     &._zindex {
         z-index: 0;
+        width: 0;
+        overflow: hidden;
+        opacity: 0;
     }
 }
 

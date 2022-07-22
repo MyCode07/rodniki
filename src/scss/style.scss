@@ -125,7 +125,7 @@ body {
             }
         }
 
-        @media (max-width:370px){
+        @media (max-width: 370px) {
             width: 75%;
         }
 
@@ -146,13 +146,11 @@ body {
             margin-bottom: 66px;
             cursor: pointer;
 
-            @media (max-height:500px){
-                margin-bottom: 30px;
+            @media (max-height: 500px) {
+                margin-bottom: 46px;
             }
 
-            @media (max-height:450px){
-                margin-bottom: 5px;
-            }
+           
 
             display: none;
 
@@ -737,6 +735,10 @@ main._zindeed {
             @include adaptive-value("padding-left", 31, 23, 1);
             @include adaptive-value("padding-right", 31, 23, 1);
             max-width: 99%;
+
+            & > :not(:last-child) {
+                margin-bottom: 0.5em;
+            }
 
             strong {
                 color: #0079c2;
