@@ -424,6 +424,12 @@
 
             // min-height: 0;
             // min-width: 0;
+
+            @media (max-width: 1096px) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         // .feedback__slider-next
@@ -553,7 +559,11 @@
             }
 
             @media (max-width: 1096px) {
-                @include adaptive-value("max-width", 694, 331, 1);
+                max-width: 664px !important;
+                width: 100%;
+                @media (max-width: 700px) {
+                    max-width: none;
+                }
             }
         }
 
@@ -589,6 +599,87 @@
             line-height: 1.18em;
             color: #0079c2;
             @include adaptive-value("margin-bottom", 47, 13, 1);
+        }
+    }
+}
+
+.feedback {
+    // .feedback__slider
+
+    &__slider {
+        // .feedback__slider-empty
+
+        &-empty {
+            @media (min-width: 1097px) {
+                @include adaptive-value("width", 694, 110, 1);
+            }
+
+            @media (max-width: 1096px) {
+                max-width: 664px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+            }
+
+            @media (max-width: 700px) {
+                max-width: none;
+            }
+
+            hr {
+                border: 1px solid rgba(0, 121, 194, 0.2);
+
+                &.hr-1 {
+                    width: 67px;
+                }
+                &.hr-2 {
+                    width: 100%;
+                    margin-bottom: 17px;
+                }
+                &.hr-3 {
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+                &.hr-4 {
+                    width: 76%;
+                }
+            }
+
+            // .feedback__slider-empty-top
+
+            &-top {
+                @include adaptive-value("padding-top", 15, 10, 1);
+                @include adaptive-value("padding-bottom", 15, 10, 1);
+                @include adaptive-value("padding-left", 23, 20, 1);
+                @include adaptive-value("padding-right", 23, 20, 1);
+                @include adaptive-value("font-size", 18, 13, 1);
+                background-color: #ffffff;
+                box-shadow: 0px 4px 9px rgba(0, 87, 145, 0.15);
+                border-radius: 10px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 1.22em;
+                color: #0079c2;
+                @include adaptive-value("margin-bottom", 12, 10, 1);
+            }
+
+            // .feedback__slider-empty-body
+
+            &-body {
+                background-color: #ffffff;
+                box-shadow: 0px 4px 9px rgba(0, 87, 145, 0.15);
+                border-radius: 10px;
+                padding-top: 16px;
+                @include adaptive-value("padding-left", 32, 21, 1);
+                @include adaptive-value("padding-right", 32, 21, 1);
+                @include adaptive-value("padding-bottom", 36, 21, 1);
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    @include adaptive-value("margin-bottom", 46, 30, 1);
+                }
+            }
         }
     }
 }
@@ -864,11 +955,10 @@
 }
 
 .form__output {
-    position: fixed;
+    position: absolute;
     z-index: 150;
     bottom: -100px;
     right: 0;
-
     visibility: hidden;
     opacity: 0;
     transition: all 0.3s ease 0s;
@@ -877,6 +967,7 @@
         visibility: visible;
         opacity: 1;
         bottom: 0;
+        position: relative;
     }
 
     // &-overlay {
@@ -904,14 +995,16 @@
         margin-bottom: 15px;
         margin-right: auto;
         transition: all 0.3s ease 0s;
-        background-color: #004771;
+        box-shadow: 0px 4px 9px rgba(0, 87, 145, 0.15);
+        background-color: #ffffff;
         padding: 2px;
         border-radius: 3px;
 
         img,
-        .svg {
+        svg {
             pointer-events: none;
             display: block;
+            stroke: #0079c2;
         }
 
         @media (any-hover: hover) {
@@ -926,7 +1019,7 @@
     &-content {
         background-color: #ffffff;
         box-shadow: 0px 4px 9px rgba(0, 87, 145, 0.15);
-        border-radius: 10px 0 0 0;
+        border-radius: 10px;
         width: 257px;
         font-style: normal;
         font-weight: 600;
@@ -956,17 +1049,13 @@
 
 .form__error-container {
     position: fixed;
-    right: 0;
-    bottom: 0;
+    @include adaptive-value("right", 25, 15, 1);
+    bottom: 15px;
     display: flex;
+    z-index: 10;
     flex-direction: column;
     & > :last-child {
         margin-top: 20px;
-    }
-    .form__output {
-        &._open{
-            position: relative;
-        }
     }
 }
 

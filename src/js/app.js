@@ -127,13 +127,16 @@ function regionAction(path, span, svg, svgparent, i) {
                     let href = element.dataset.href;
                     let location = element.dataset.rodniklocation;
                     let name = element.dataset.rodnikname;
+                    let maplink = element.dataset.maplink;
                     mass.href = href;
                     mass.location = location;
                     mass.name = name;
+                    mass.maplink = maplink;
                     arr.push(mass);
                 }
                 return arr;
             }
+            let info = rodnikLink();
 
             let centers = path.dataset.coords.trim().split('-').map((item, accum) => {
                 let coords = item.trim().split(',').map((index, acc) => {
@@ -173,7 +176,7 @@ function regionAction(path, span, svg, svgparent, i) {
                 for (let j = 0; j < centers.length; j++) {
                     let top = marks[j].getBoundingClientRect().top - map.getBoundingClientRect().top;
                     let left = marks[j].getBoundingClientRect().left - map.getBoundingClientRect().left;
-                    let icon = `<a href="" style="left: ${left}px; top: ${top}px">
+                    let icon = `<a href="${info[j].maplink}" target="_blank" style="left: ${left}px; top: ${top}px">
                                 <svg class="mini-icon" id="mini-${i + 1}-${j + 1}"  width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g filter="url(#filter0_d_45_787)">
                                     <rect class="mini-rect" x="4" width="41.5037" height="41.4162" rx="20.7081" />
@@ -192,7 +195,7 @@ function regionAction(path, span, svg, svgparent, i) {
                                     </filter>
                                     </defs>
                                 </svg>
-                            </a>`;
+                                </a>`;
 
                     svgparent.insertAdjacentHTML('beforeend', icon);
                 }
@@ -210,7 +213,7 @@ function regionAction(path, span, svg, svgparent, i) {
             div.classList.add('map__rodniki-items');
 
             for (let n = 0; n < rodniki.length; n++) {
-                let info = rodnikLink();
+               
 
                 const item = `  <a href="${info[n].href}" class="rodniki__item">
                                 <div class="rodniki__item-info">
@@ -318,14 +321,7 @@ function hoverOnRodnik(rodniki, svgPerent) {
     for (let i = 0; i < links.length; i++) {
         if (window.innerWidth <= 1200) {
             hover(links[0], rodniki[0], span);
-            links[i].addEventListener('click', function (e) {
-                e.preventDefault();
-                let labels = document.querySelectorAll('.map__rodniki .select__label');
-                cahngeRegionSelect(document.querySelector('.map__rodniki'), labels[i])
-                appendRodnik(i)
-            })
         }
-
 
         links[i].addEventListener('mouseover', function () {
             hover(links[i], rodniki[i], span);
