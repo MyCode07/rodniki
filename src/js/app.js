@@ -671,6 +671,7 @@ document.addEventListener('click', function (e) {
 
         span.classList.remove('_zindex');
 
+        document.querySelector('.path._init').classList.remove('_init');
 
         if (window.innerWidth <= 1200 && !regions.classList.contains('_active')) {
             document.querySelector('body').classList.add('_loaded');
