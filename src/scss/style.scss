@@ -283,22 +283,22 @@ body {
         display: flex;
         position: relative;
 
-        & > :first-child {
+        & > :not(:last-child){
             @include adaptive-value("margin-right", 36, 8, 1);
         }
-
+        
         img {
             pointer-events: none;
+            @include adaptive-value("height", 103, 57, 1);
+
+            @media (max-width:360px){
+                height: 47px;
+            }
         }
     }
 }
 
-.logo-sovet {
-    @include adaptive-value("height", 103, 57, 1);
-}
-.logo-main {
-    @include adaptive-value("height", 103, 57, 1);
-}
+
 main._zindeed {
     position: relative;
     z-index: 0;

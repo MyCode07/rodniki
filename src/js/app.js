@@ -551,13 +551,6 @@ document.addEventListener('click', function (e) {
         const items = document.querySelectorAll('.map__rodniki-items');
         const pages = document.querySelectorAll('.map__rodniki-select-pages input');
         const underline = document.querySelector('.map__rodniki-select-pages span');
-
-        if (targetEl.classList.contains('map__rodniki-select-next')) {
-            slideRodnikLeft(items, pages, underline);
-        }
-        if (targetEl.classList.contains('map__rodniki-select-prev')) {
-            slideRodnikRight(items, pages, underline);
-        }
     }
 })
 
