@@ -213,16 +213,16 @@ function regionAction(path, span, svg, svgparent, i) {
             div.classList.add('map__rodniki-items');
 
             for (let n = 0; n < rodniki.length; n++) {
-               
 
-                const item = `  <a href="${info[n].href}" class="rodniki__item">
-                                <div class="rodniki__item-info">
-                                    <span class="rodniki__item-title">Родник «${info[n].name}»</span>
-                                    <span class="rodniki__item-descr"> ${info[n].location},
-                                        ${centers[n]}</span>
-                                </div>
-                                <img src="https://родникиоренбуржья.рф/wp-content/themes/rodniki/assets/img/location.svg" alt="">
-                            </a>`;
+
+                const item = `  <div class="rodniki__item">
+                                    <div class="rodniki__item-info">
+                                        <a href="${info[n].href}" class="rodnik-page" ><span class="rodniki__item-title">Родник «${info[n].name}»</span></a>
+                                        <span class="rodniki__item-descr"> ${info[n].location},
+                                            ${centers[n]}</span>
+                                    </div>
+                                    <a href="${info[n].maplink}" target="_blank"><img src="https://родникиоренбуржья.рф/wp-content/themes/rodniki/assets/img/location.svg" alt=""></a>
+                                </div>`;
                 rodnik.push(item);
                 rodnik2.push(item);
 
@@ -321,6 +321,11 @@ function hoverOnRodnik(rodniki, svgPerent) {
     for (let i = 0; i < links.length; i++) {
         if (window.innerWidth <= 1200) {
             hover(links[0], rodniki[0], span);
+            links[i].addEventListener('click', function (e) {
+                e.preventDefault();
+                cahngeRegionSelect(document.querySelector('.map__rodniki'), labels[i])
+                appendRodnik(i)
+            })
         }
 
         links[i].addEventListener('mouseover', function () {
@@ -372,7 +377,7 @@ function goToRegion(path, span, svg, svgparent, i) {
             }
         });
         path.classList.add('_hovered');
-        document.querySelector('.map__next-btn').classList.add('_active');
+        // document.querySelector('.map__next-btn').classList.add('_active');
     }
     if (document.querySelector('.mini-icon-r')) {
         if (window.innerWidth > 1200) {
@@ -603,7 +608,7 @@ function rodnikActions() {
                     appendRodnik(i);
                 }
                 else {
-                    window.location.href = document.querySelectorAll('.map__rodniki-items a')[i].href;
+                    window.location.href = document.querySelectorAll('.map__rodniki-items a.rodnik-page')[i].href;
                 }
             })
         }
@@ -627,7 +632,7 @@ function appendRodnik(i) {
 
     }
     next.append(rodnik);
-    let link = next.querySelector('.rodniki__item').href;
+    let link = next.querySelector('.rodnik-page').href;
     document.querySelector('.map__next-link').href = link;
 }
 

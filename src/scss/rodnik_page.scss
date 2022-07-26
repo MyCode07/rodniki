@@ -162,10 +162,16 @@
 }
 
 .rodnik {
-    margin-bottom: -162px;
-
-    @media (max-width: 1096px) {
-        margin-bottom: -170px;
+    &._margin-minus {
+        @include adaptive-value("margin-bottom", -150, -170, 1);
+    }
+    &._margin-plus {
+        @media (min-width: 1097px) {
+            @include adaptive-value("margin-bottom", 100, 50, 1);
+        }
+        @media (max-width: 1096px) {
+            @include adaptive-value("margin-bottom", -150, -170, 1);
+        }
     }
 
     // .rodnik__container
@@ -211,10 +217,10 @@
         @include adaptive-value("margin-right", 100, 0, 1);
 
         max-width: 956px;
+        width: 100%;
 
         @media (max-width: 992px) {
             max-width: none;
-            width: 100%;
         }
 
         @media (max-width: 1096px) {
@@ -244,6 +250,7 @@
             // .rodnik__info-item-content
 
             &-content {
+                flex: 1 1 auto;
             }
 
             // .rodnik__info-item-title
@@ -330,7 +337,7 @@
     &__gallery {
         display: flex;
         flex-direction: column;
-
+        position: relative;
         @media (max-width: 1096px) {
             flex-direction: row;
             flex-wrap: wrap;
@@ -366,6 +373,17 @@
 
             @media (max-width: 374px) {
                 max-width: 100%;
+            }
+        }
+
+        div {
+            @include adaptive-value('border-radius', 15, 5, 1);
+            overflow: hidden;
+            border: 1px dashed #0079c2;
+            background-color: #fff;
+            img {
+                position: relative;
+                z-index: -2;
             }
         }
     }
