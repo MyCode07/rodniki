@@ -278,6 +278,19 @@
                     font-weight: 600;
                     @include adaptive-value("font-size", 36, 24, 1);
                     line-height: 1.18em;
+
+                    &._hidden {
+                        display: none;
+                    }
+                    @media (max-width: 768px) {
+                        &._visible {
+                            display: none;
+                        }
+
+                        &._hidden {
+                            display: block;
+                        }
+                    }
                 }
             }
 
@@ -359,7 +372,7 @@
             line-height: 1.22em;
             margin-bottom: 10px;
             @include adaptive-value("margin-bottom", 25, 15, 1);
-            @include adaptive-value("font-size", 36, 24, 1);
+            @include adaptive-value("font-size", 42, 28, 1);
         }
 
         a {
@@ -885,8 +898,8 @@
     align-items: center;
     @include adaptive-value("padding-top", 13, 9, 1);
     @include adaptive-value("padding-bottom", 13, 9, 1);
-    @include adaptive-value("padding-right", 23, 11, 1);
-    @include adaptive-value("padding-left", 23, 11, 1);
+    @include adaptive-value("padding-right", 23, 18, 1);
+    @include adaptive-value("padding-left", 23, 18, 1);
 }
 
 .feedback__form-overall_score,
