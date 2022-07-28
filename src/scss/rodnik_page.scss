@@ -225,7 +225,7 @@
         background: #ffffff;
         box-shadow: 0px 0px 15px rgba(0, 51, 82, 0.12);
         @include adaptive-value("padding-top", 55, 20, 1);
-        @include adaptive-value("padding-bottom", 35, 24, 1);
+        @include adaptive-value("padding-bottom", 55, 20, 1);
         @include adaptive-value("padding-left", 29, 23, 1);
         @include adaptive-value("padding-right", 65, 23, 1);
         @include adaptive-value("border-radius", 20, 15, 1);
