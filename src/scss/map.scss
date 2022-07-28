@@ -7,6 +7,7 @@
     padding-bottom: 60;
     @include adaptive-value("margin-bottom", 116, 52, 1);
     @include adaptive-value("min-height", 865, 314, 1);
+    overflow: hidden;
 
     @media (max-width: 992px) {
         z-index: 0;
@@ -255,6 +256,9 @@
         opacity: 0;
         transition: transform 1.2s ease 0s, opacity 1.2s ease 0s;
         will-change: transform;
+        max-width: 522px;
+        width: 100%;
+
         @media (max-width: 1024px) {
             transition: transform 0.6s ease 0.2s, opacity 0.6s ease 0.2s;
         }
@@ -307,12 +311,13 @@
         // .map__rodniki-body
 
         &-body {
-            max-width: 522px;
-            // width: 100%;
-            @include adaptive-value("width", 522, 0, 1);
+          
 
             position: relative;
             overflow: hidden;
+
+            @media (min-width: 1201px) {
+            }
 
             @media (max-width: 1200px) {
                 position: absolute;
@@ -359,6 +364,11 @@
             margin-top: 25px;
 
             display: none;
+
+            @media (min-width: 1201px) {
+                position: absolute;
+                bottom: 80px;
+            }
 
             @media (max-width: 1200px) {
                 display: none !important;
@@ -604,7 +614,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-       
+
         max-height: 0;
         transition: all 0.3s ease 0s;
 
@@ -687,9 +697,9 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            a{
+            a {
                 display: block;
-                @media (max-width:1200px){
+                @media (max-width: 1200px) {
                     pointer-events: none;
                 }
             }
@@ -705,7 +715,6 @@
             color: #ffffff;
             margin-bottom: 22px;
             display: block;
-
 
             &:before {
                 counter-increment: rosnik-count; /* Инкрементирует счётчик*/
@@ -1323,7 +1332,6 @@ div {
     position: absolute;
     display: block;
 }
-
 
 .rodniki__preload {
     position: fixed;

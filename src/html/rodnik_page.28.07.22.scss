@@ -35,8 +35,8 @@
     }
 }
 
-.rodnik-page {
-    @media (max-width: 1200px) {
+.rodnik-page{
+    @media (max-width:1200px){
         pointer-events: none;
     }
 }
@@ -182,7 +182,17 @@
 }
 
 .rodnik {
-    @include adaptive-value("margin-bottom", 150, 50, 1);
+    &._margin-minus {
+        @include adaptive-value("margin-bottom", -150, -170, 1);
+    }
+    &._margin-plus {
+        @media (min-width: 1097px) {
+            @include adaptive-value("margin-bottom", 100, 50, 1);
+        }
+        @media (max-width: 1096px) {
+            @include adaptive-value("margin-bottom", -150, -170, 1);
+        }
+    }
 
     // .rodnik__container
 
@@ -203,7 +213,6 @@
             align-items: center;
             position: relative;
             @include adaptive-value("top", -278, -210, 1);
-            @include adaptive-value("margin-bottom", -278, -210, 1);
         }
     }
 
@@ -212,7 +221,6 @@
     &__info {
         position: relative;
         @include adaptive-value("top", -278, -210, 1);
-        @include adaptive-value("margin-bottom", -278, -210, 1);
 
         @media (max-width: 1096px) {
             top: 0 !important;
@@ -280,6 +288,8 @@
 
             // .rodnik__info-item-title hidden
 
+            
+
             // .rodnik__info-item-text
 
             &-text {
@@ -325,38 +335,32 @@
     // .rodnik__gallery
 
     &__gallery {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        @media (max-width: 1096px) {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         @media (max-width: 640px) {
             padding: 0 23px;
-        }
+            flex-wrap: nowrap;
 
-        @media (max-width: 1096px) {
-            width: 100%;
-        }
-
-        &-body {
-            & > :not(:first-child) {
-                display: none;
+            & > :last-child {
+                visibility: hidden;
+                opacity: 0;
+                position: absolute;
             }
+        }
 
+        & > :not(:last-child) {
+            @include adaptive-value("margin-bottom", 107, 0, 1);
             @media (max-width: 1096px) {
-                display: flex;
-                & > :first-child {
-                    @include adaptive-value("margin-right", 30, 10, 1);
-                }
-
-                & > :nth-child(2) {
-                    display: block !important;
-                }
+                @include adaptive-value("margin-bottom", 10, 3, 1);
+                @include adaptive-value("margin-right", 10, 3, 1);
             }
-        }
-
-        &-title {
-            font-style: normal;
-            font-weight: 600;
-            line-height: 1.22em;
-            margin-bottom: 10px;
-            @include adaptive-value("margin-bottom", 25, 15, 1);
-            @include adaptive-value("font-size", 36, 24, 1);
         }
 
         a {
@@ -376,10 +380,9 @@
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover;
         }
 
-        .noimage {
+        div {
             @include adaptive-value("width", 416, 160, 1);
             @include adaptive-value("border-radius", 15, 5, 1);
             overflow: hidden;

@@ -118,31 +118,30 @@ function regionAction(path, span, svg, svgparent, i) {
             svg2.classList.add('_visible');
             svg2.append(pathCopy);
 
-            let category = document.querySelectorAll(`[data-category="${path.dataset.name}"]`);
-            function rodnikLink() {
-                let arr = [];
-                for (let i = 0; i < category.length; i++) {
-                    let mass = {};
-                    let element = category[i].closest('li').querySelector('.rodnik__link');
-                    let href = element.dataset.href;
-                    let location = element.dataset.rodniklocation;
-                    let name = element.dataset.rodnikname;
-                    let maplink = element.dataset.maplink;
-                    mass.href = href;
-                    mass.location = location;
-                    mass.name = name;
-                    mass.maplink = maplink;
-                    arr.push(mass);
-                }
-                return arr;
-            }
-            let info = rodnikLink();
+            let a = `<path class="path path19" data-name="Абдулинский" data-index="0"
+            data-rodniki="Артамоновский ключ,"
+            data-coords="53.817177, 53.249635-"
+            data-links="https://xn--90afdfhanwedfrhd8b3j1b.xn--p1ai/%d0%b0%d1%80%d1%82%d0%b0%d0%bc%d0%be%d0%bd%d0%be%d0%b2%d1%81%d0%ba%d0%b8%d0%b9-%d0%ba%d0%bb%d1%8e%d1%87/,"
+            data-maplinks="https://yandex.ru/maps/-/CCURA6du~B,"
+            data-rodniklocation="Абдулинский р-он,  с. Артамоновка,-"</path>`
 
             let centers = path.dataset.coords.trim().split('-').map((item, accum) => {
                 let coords = item.trim().split(',').map((index, acc) => {
                     return +index;
                 })
                 return coords;
+            })
+            centers.length = centers.length - 1
+
+            let links = path.dataset.links.trim().split(',').map((item, accum) => {
+                return item;
+            })
+
+            let maplinks = path.dataset.maplinks.trim().split(',').map((item, accum) => {
+                return item;
+            })
+            let locaions = path.dataset.rodniklocation.trim().split('__').map((item, accum) => {
+                return item;
             })
 
             ymaps.ready(init(path, centers));
@@ -176,7 +175,7 @@ function regionAction(path, span, svg, svgparent, i) {
                 for (let j = 0; j < centers.length; j++) {
                     let top = marks[j].getBoundingClientRect().top - map.getBoundingClientRect().top;
                     let left = marks[j].getBoundingClientRect().left - map.getBoundingClientRect().left;
-                    let icon = `<a href="${info[j].maplink}" target="_blank" style="left: ${left}px; top: ${top}px">
+                    let icon = `<a href="${links[j]}" style="left: ${left}px; top: ${top}px">
                                 <svg class="mini-icon" id="mini-${i + 1}-${j + 1}"  width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g filter="url(#filter0_d_45_787)">
                                     <rect class="mini-rect" x="4" width="41.5037" height="41.4162" rx="20.7081" />
@@ -204,7 +203,7 @@ function regionAction(path, span, svg, svgparent, i) {
             }, timeout);
 
             const rodniki = path.dataset.rodniki.trim().split(',');
-
+            rodniki.length = rodniki.length - 1
 
             let rodnik = [];
             let rodnik2 = [];
@@ -216,12 +215,12 @@ function regionAction(path, span, svg, svgparent, i) {
 
 
                 const item = `  <div class="rodniki__item">
-                                    <div class="rodniki__item-info">
-                                        <a href="${info[n].href}" class="rodnik-page" ><span class="rodniki__item-title">Родник «${info[n].name}»</span></a>
-                                        <span class="rodniki__item-descr"> ${info[n].location},
-                                            ${centers[n]}</span>
-                                    </div>
-                                    <a href="${info[n].maplink}" target="_blank"><img src="https://родникиоренбуржья.рф/wp-content/themes/rodniki/assets/img/location.svg" alt=""></a>
+                                    <a href="${links[n]}" class="rodniki__item-info rodnik-page">
+                                        <span class="rodniki__item-title">Родник «${rodniki[n]}»</span>
+                                        <span class="rodniki__item-descr"> ${locaions[n]} &nbsp ${centers[n]}
+                                            </span>
+                                    </a>
+                                    <a href="${maplinks[n]}" target="_blank"><img src="https://родникиоренбуржья.рф/wp-content/themes/rodniki/assets/img/location.svg" alt=""></a>
                                 </div>`;
                 rodnik.push(item);
                 rodnik2.push(item);
