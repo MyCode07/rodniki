@@ -211,8 +211,11 @@
 
     &__info {
         position: relative;
-        @include adaptive-value("top", -278, -210, 1);
-        @include adaptive-value("margin-bottom", -278, -210, 1);
+
+        @media (min-width: 1097px) {
+            @include adaptive-value("top", -278, -210, 1);
+            @include adaptive-value("margin-bottom", -278, -210, 1);
+        }
 
         @media (max-width: 1096px) {
             top: 0 !important;
